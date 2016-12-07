@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="flexslider" ng-controller="SlideController">
+                <ul class="slides">
+                    <li ng-repeat="x in slides">
+                        <a href="{{x.url}}"><img src="{{x.src}}" /></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row top-site-list" ng-controller="EditorChosenController">
+            <span class="title col-xs-12">
+                编辑精选
+            </span>
+            <div class="col-md-3 col-sm-4 col-xs-6 editor-chosen-item" ng-repeat="i in chosenItems">
+                <a href="{{i.url}}">
+                    <img src="{{i.img}}">
+                    <span>{{i.name}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 hidden-sm">
+        <div class="top-designer-list" ng-controller="TopDesignerListController">
+            <span class="title">
+                推荐设计师
+            </span>
+            <ul>
+                <li ng-repeat="d in topDesigners">
+                    <a href="{{d.url}}"><img src="{{d.avatar}}"><span>{{d.name}}</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

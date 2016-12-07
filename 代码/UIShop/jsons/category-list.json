@@ -1,0 +1,54 @@
+{
+    "categorys": [
+        {
+            "name": "门户网站",
+            "url": "#/",
+            "img": "images/category/menhu.png"
+        },
+        {
+            "name": "行业网站",
+            "url": "#/",
+            "img": "images/category/hangye.jpg"
+        },
+        {
+            "name": "交易/电商",
+            "url": "#/",
+            "img": "images/category/dianshang.jpg"
+        },
+        {
+            "name": "同城/租房/分类信息",
+            "url": "#/",
+            "img": "images/category/tongcheng.png"
+        },
+        {
+            "name": "社交/论坛",
+            "url": "#/",
+            "img": "images/category/luntan.jpg"
+        },
+        {
+            "name": "政府网站",
+            "url": "#/",
+            "img": "images/category/zhengfu.png"
+        },
+        {
+            "name": "工具类网站",
+            "url": "#/",
+            "img": "images/category/gongju.png"
+        },
+        {
+            "name": "视频/音乐",
+            "url": "#/",
+            "img": "images/category/shipin.jpg"
+        },
+        {
+            "name": "游戏",
+            "url": "#/",
+            "img": "images/category/youxi.png"
+        },
+        {
+            "name": "企业网站",
+            "url": "#/",
+            "img": "images/category/qiye.jpg"
+        }
+    ]
+}

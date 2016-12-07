@@ -1,0 +1,11 @@
+<div class="row" ng-controller="CategoryController">
+    <div class="col-xs-6 col-sm-4 col-md-3 category-item" ng-repeat="c in categorys">
+        <div class="box">
+            <a href="{{c.url}}">
+                <img src="{{c.img}}">
+                <span>{{c.name}}</span>
+            </a>
+        </div>
+    </div>
+
+</div>

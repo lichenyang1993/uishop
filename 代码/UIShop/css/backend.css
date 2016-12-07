@@ -1,0 +1,112 @@
+body{
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color:#ededed;
+}
+
+.avatar{
+    width: 64px;
+    height: 64px;
+}
+
+.designer div {
+    float: left;
+}
+
+.designer .designer-div {
+    width: 80px;
+    text-align: center;
+}
+.designer .designer-div span {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+    width: 80px;
+}
+
+.designer .rate-div {
+    margin-left: 20px;
+}
+
+.designer .rate-div .score,.designer .rate-div .sell-num {
+    color: #3498db;
+}
+
+.balance,.price {
+    font-size: 18px;
+    font-family: arial;
+    color: #F40;
+}
+
+.work-list {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+.work-list thead th{
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.work-list td {
+    border: 1px solid #ddd;
+    padding: 5px 15px;
+}
+
+/*.work-list tbody:before {*/
+    /*content: "-";*/
+    /*display: block;*/
+    /*line-height: 1em;*/
+    /*color: transparent;*/
+/*}*/
+
+.work-list .work-cover {
+    /*width: 100px;*/
+}
+
+.work-list .work-cover img{
+    width: 100px;
+}
+
+.work-list .work-name {
+    font-size: 14px;
+    line-height: 1.5714285;
+    font-weight: bold;
+    color: #34495e;
+    padding-left: 6px;
+}
+
+.no-data-prompt {
+    display: inline-block;
+    width: 100%;
+    padding: 100px 0;
+    font-size: 28px;
+    text-align: center;
+    color: #34495e;
+}
+
+.work-description {
+    resize: vertical;
+}
+
+.submit-div {
+    text-align: center;
+}
+
+.workPicItem {
+    position: relative;
+    margin-top: 8px;
+}
+
+.workPicItem .workPicDel{
+    position: absolute;
+    right: 0;
+    top: 2px;
+}
+
+.newWorkDiv span{
+    color: #a94442;
+    display: block;
+}

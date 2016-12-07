@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>H5商城</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel='stylesheet'  href='css/bootstrap.min.css' />
+    <link rel='stylesheet'  href='css/flexslider.css' />
+    <link rel='stylesheet'  href='css/nav.css' />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.flexslider-min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/ng-infinite-scroll.min.js"></script>
+    <script src="js/project.js"></script>
+
+</head>
+<body ng-app="uishop" >
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" class="logo-hd">
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" ng-controller="HeaderController">
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/')}"><a href="#/">首页</a></li>
+                <li ng-class="{ active: isActive('/category')}"><a href="#/category">设计分类</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="designer-backend.html">cky798</a></li>
+                <li><a class="nav-logout" href="#/">退出登录</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="input-group col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-5 search-div" ng-controller="SearchWorksController as swc">
+    <input type="text" class="form-control input-lg" ng-model="keyword">
+        <span class="input-group-addon btn btn-primary" ng-click="searchWork()">
+            <span class="glyphicon glyphicon-search"></span>
+        查找设计</span>
+</div>
+<div ng-view class="col-sm-10  col-sm-offset-1">
+
+
+</div>
+
+</body>
+</html>
