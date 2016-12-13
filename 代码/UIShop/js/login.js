@@ -14,7 +14,12 @@ angular.module('uishop-login',[])
             UserService.login(self.user).then(function(){
                 self.loginError = false;
                 $location.path('index.html');
-            },function(){
+            },function(errResponse){
+                if(errResponse.status == 404){
+                    self.loginErrorMsg = "连接服务器失败，请检查网络";
+                }else if(errResponse.status == 401){
+                    self.loginErrorMsg = "用户名或密码错误";
+                }
                 self.loginError = true;
             });
         }
