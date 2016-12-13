@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>设计师后台 - H5商城</title>
+    <title>买家后台 - H5商城</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -32,10 +32,10 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="js/ngRemoteValidate.0.6.1.min.js"></script>
-    <script src="js/designer-backend.js"></script>
+    <script src="js/buyer-backend.js"></script>
 </head>
 
-<body ng-app="ui-designer-backend">
+<body ng-app="ui-buyer-backend">
 
     <div id="wrapper">
 
@@ -48,12 +48,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">设计师后台</a>
+                <a class="navbar-brand" href="index.html">买家后台</a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                <li><a href="javascript:void(0);">cky798</a></li>
+                <li><a href="javascript:void(0);">众一商贸有限公司</a></li>
                 <li><a class="nav-logout" href="#/">退出登录</a></li>
             </ul>
             <!-- /.navbar-top-links -->
@@ -65,30 +65,16 @@
                             <a href="#/"><i class="fa fa-dashboard fa-fw"></i> 个人中心</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-file fa-fw"></i> 作品管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-file fa-fw"></i> 我购买的作品<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#/unsold-work">未售出作品</a>
+                                    <a href="#/unfinished-order">未完成订单</a>
                                 </li>
                                 <li>
-                                    <a href="#/sold-work">已售出作品</a>
+                                    <a href="#/finished-order">已完成订单</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="tables.html"><i class="fa fa-area-chart  fa-fw"></i> 订单管理<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#/unsend-order">未发货订单</a>
-                                </li>
-                                <li>
-                                    <a href="#/unrecv-order">未收货订单</a>
-                                </li>
-                                <li>
-                                    <a href="#/finish-order">已完成订单</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="tables.html"><i class="fa fa-bookmark  fa-fw"></i> 售后管理<span class="fa arrow"></span></a>

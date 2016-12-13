@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="uishop-login" >
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录 - H5商城</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel='stylesheet'  href='css/bootstrap.min.css' />
+    <link href="css/metisMenu.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/morris.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link rel='stylesheet'  href='css/login.css' />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/login.js"></script>
+
+</head>
+<body ng-controller="LoginController as ctrl">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" class="logo-hd">
+                <span>H5商城</span>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" >
+            <ul class="nav navbar-nav">
+                <li><a href="index.html#/">首页</a></li>
+                <li><a href="index.html#/category">设计分类</a></li>
+            </ul>
+
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="col-sm-10  col-sm-offset-1" >
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h3 class="page-header">欢迎回来{{ctrl.user}}</h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login-div">
+                    <form name="ctrl.loginForm" ng-submit="ctrl.login()">
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input name="username" class="form-control"
+                                   ng-model="ctrl.user.username"
+                                   required>
+                                <span ng-show="ctrl.loginForm.username.$error.required && ctrl.loginForm.username.$dirty">
+                                    请输入用户名
+                                </span>
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input name="password" class="form-control"
+                                   type="password"
+                                   ng-model="ctrl.user.password"
+                                   required>
+                                    <span ng-show="ctrl.loginForm.password.$error.required && ctrl.loginForm.password.$dirty">
+                                        请输入密码
+                                    </span>
+                        </div>
+
+                        <div ng-init="ctrl.user = {userType : 'designer'}" class="form-group">
+                            <label>登录身份</label>
+                            <label class="radio-inline">
+                                <input type="radio"
+                                       name="userType"
+                                       ng-model="ctrl.user.userType"
+                                       value="designer"
+                                       required>设计师
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio"
+                                       name="userType"
+                                       ng-model="ctrl.user.userType"
+                                       value="buyer"
+                                       required>买家
+                            </label>
+                            <span ng-show="ctrl.loginForm.userType.$error.required && loginForm.userType.$dirty">
+                                        请选择登录类型
+                            </span>
+                            <span ng-show="ctrl.loginError">
+                                        用户名或密码错误
+                            </span>
+                        </div>
+
+                        <div class="submit-div">
+                            <button class="btn btn-primary" type="submit"
+                                    ng-disabled="loginForm.$invalid || loginForm.$pending">
+                               登录
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

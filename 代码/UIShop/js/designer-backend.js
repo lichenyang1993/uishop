@@ -15,6 +15,8 @@ var app = angular.module('ui-designer-backend',['ngRoute','remoteValidation'])
         .when('/unrecv-order',{templateUrl:'views/designer-backend/unrecv-order.html'})
         .when('/finish-order',{templateUrl:'views/designer-backend/finish-order.html'})
         .when('/new-work',{templateUrl:'views/designer-backend/new-work.html'})
+        .when('/unfinished-workorder',{templateUrl:'views/designer-backend/unfinished-workorder.html'})
+        .when('/finished-workorder',{templateUrl:'views/designer-backend/finished-workorder.html'})
         .otherwise({redirectTo:'/'});
 }]);
 
