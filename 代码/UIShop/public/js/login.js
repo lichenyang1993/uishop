@@ -13,7 +13,7 @@ angular.module('uishop-login',[])
             console.log(self.user);
             UserService.login(self.user).then(function(){
                 self.loginError = false;
-                $location.path('index.html');
+                window.location.href="index.html";
             },function(errResponse){
                 if(errResponse.status == 404){
                     self.loginErrorMsg = "连接服务器失败，请检查网络";
