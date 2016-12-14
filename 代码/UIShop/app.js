@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -13,6 +14,11 @@ var postMethodTest = require('./routes/postMethodTest');
 var fileUploadTest = require('./routes/fileuploadTest');
 var demo = require('./routes/demo');
 
+/*
+------------------- 正式项目使用的模块 --------------------------------
+ */
+var userservice = require('./routes/userservice');
+
 var app = express();
 
 // view engine setup
@@ -24,6 +30,13 @@ app.use(logger('dev'));
 app.use(express.bodyParser({uploadDir:'./upload'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
+app.use(session({
+    secret: '12345',
+    name: 'ui-shop',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    cookie: {maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
@@ -35,12 +48,14 @@ app.post('/postMethodTest', postMethodTest.postMethod);
 app.post('/fileUploadTest', fileUploadTest.postFile);
 app.get('/demo', demo.getdemo);
 
-/// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+// 用户登录
+app.post('/api/session', userservice.login);
+
+// 获取当前登录用户
+app.get('/api/session', userservice.getLoginUser);
+
+// 退出登录
+app.delete('/api/session', userservice.logout);
 
 /// error handlers
 
@@ -62,6 +77,13 @@ app.use(function(err, req, res, next) {
         message: err.message,
         error: {}
     });
+});
+
+/// catch 404 and forwarding to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 module.exports = app;

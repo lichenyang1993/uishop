@@ -17,7 +17,7 @@ describe('Login Module Testcase',function() {
     }));
 
     it('should login success',function() {
-        mockBackend.expectPOST('/api/user')
+        mockBackend.expectPOST('/api/session')
             .respond(200,{msg:'登录成功'})
         loginCtrl.login(user);
 
@@ -26,7 +26,7 @@ describe('Login Module Testcase',function() {
     });
 
     it('server not reachable',function() {
-        mockBackend.expectPOST('/api/user')
+        mockBackend.expectPOST('/api/session')
             .respond(404,{});
         loginCtrl.login(user);
         mockBackend.flush();
@@ -35,7 +35,7 @@ describe('Login Module Testcase',function() {
     });
 
     it('should login fail',function() {
-        mockBackend.expectPOST('/api/user')
+        mockBackend.expectPOST('/api/session')
             .respond(401,{msg:'用户名或密码错误'});
         loginCtrl.login(user);
         mockBackend.flush();

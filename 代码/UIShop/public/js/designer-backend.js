@@ -39,6 +39,48 @@ app.directive("fileread", [function () {
     }
 }]);
 
+app.controller('DesignerHeaderController',['$location','$http',function($location,$http){
+    var self = this;
+    self.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
+    self.user = {};
+
+    self.user.designerLogin = false;
+    self.user.designerName = '';
+    self.user.userId = 0;
+
+
+    self.getLoginUser = function(){
+        $http.get('/api/session').then(function(response){
+//                console.log('获取当前登录用户',
+//                response);
+            if(response.data.userType=='designer'){
+                self.user.designerLogin = true;
+                self.user.designerName = response.data.username;
+            }else if(response.data.userType=='buyer'){
+                window.location.href="index.html";
+            }else{
+                window.location.href="index.html";
+            }
+            self.userId = response.data.userId;
+        },function(errResponse){
+            window.location.href="index.html";
+        });
+    };
+
+    self.logout = function(){
+        $http.delete('/api/session').then(function(response){
+            self.user.designerLogin = false;
+            self.user.designerName = '';
+            self.user.userId = 0;
+            window.location.href="index.html";
+        });
+    }
+    self.getLoginUser();
+
+
+}]);
 
 
 

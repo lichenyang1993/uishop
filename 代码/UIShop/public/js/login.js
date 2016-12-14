@@ -28,7 +28,7 @@ angular.module('uishop-login',[])
     .factory('UserService',['$http',function($http){
         return {
             login : function(user){
-                return $http.post('/api/user',user);
+                return $http.post('/api/session',user);
             }
         };
     }]);

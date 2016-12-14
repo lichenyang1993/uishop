@@ -18,10 +18,53 @@
             .otherwise({redirectTo:'/'});
         }]);
 
-    app.controller('HeaderController',['$scope','$location',function($scope,$location){
-        $scope.isActive = function (viewLocation) {
+    app.controller('HeaderController',['$location','$http',function($location,$http){
+        var self = this;
+        self.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
+
+        self.designerLogin = false;
+        self.designerName = '';
+        self.buyerLogin = false;
+        self.buyerName = '';
+        self.userId = 0;
+
+        self.getLoginUser = function(){
+            $http.get('/api/session').then(function(response){
+//                console.log('获取当前登录用户',
+//                response);
+                if(response.data.userType=='designer'){
+                    self.designerLogin = true;
+                    self.designerName = response.data.username;
+
+                    self.buyerLogin = false;
+                    self.buyerName = '';
+                }else if(response.data.userType=='buyer'){
+                    self.buyerLogin = true;
+                    self.buyerName = response.data.username;
+
+                    self.designerLogin = false;
+                    self.designerName = '';
+                }
+                self.userId = response.data.userId;
+            },function(errResponse){
+
+            });
+        };
+
+        self.logout = function(){
+            $http.delete('/api/session').then(function(response){
+                self.designerLogin = false;
+                self.designerName = '';
+                self.buyerLogin = false;
+                self.buyerName = '';
+                self.userId = 0;
+            });
+        }
+        self.getLoginUser();
+
+
     }]);
     app.controller('SlideController', function($scope, $http) {
         $http.get("jsons/slides.json")

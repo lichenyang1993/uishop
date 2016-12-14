@@ -11,8 +11,14 @@ module.exports = function(config){
             '../angular.js',
             'angular-mocks.js',
             '../angular-route.js',
+            '../ng-infinite-scroll.min.js',
             '../login.js',
-            'loginSpec.js'
+            '../font-end.js',
+            '../designer-backend.js',
+            '../ngRemoteValidate.0.6.1.min.js',
+            'loginSpec.js',
+            'headerSpec.js',
+            'designerHeaderSpec.js'
         ],
 
         // 需要排除的文件列表或者文件匹配正则表达式
