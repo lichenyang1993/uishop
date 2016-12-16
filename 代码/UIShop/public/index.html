@@ -50,9 +50,9 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div class="input-group col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-5 search-div" ng-controller="SearchWorksController as swc">
-    <input type="text" class="form-control input-lg" ng-model="keyword">
-        <span class="input-group-addon btn btn-primary" ng-click="searchWork()">
+<div class="input-group col-sm-7 col-sm-offset-4 col-md-6 col-md-offset-5 search-div" ng-controller="SearchWorkController as ctrl">
+    <input type="text" class="form-control input-lg" ng-model="ctrl.keyword">
+        <span class="input-group-addon btn btn-primary" ng-click="ctrl.searchWork()">
             <span class="glyphicon glyphicon-search"></span>
         查找设计</span>
 </div>

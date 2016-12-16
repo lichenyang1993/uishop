@@ -18,6 +18,7 @@ var demo = require('./routes/demo');
 ------------------- 正式项目使用的模块 --------------------------------
  */
 var userservice = require('./routes/userservice');
+var workservice = require('./routes/workservice');
 
 var app = express();
 
@@ -56,6 +57,9 @@ app.get('/api/session', userservice.getLoginUser);
 
 // 退出登录
 app.delete('/api/session', userservice.logout);
+
+// 检索作品
+app.get('/api/work', workservice.searchWork);
 
 /// error handlers
 
