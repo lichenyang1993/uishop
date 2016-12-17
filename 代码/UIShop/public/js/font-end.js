@@ -6,14 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-    var app = angular.module('uishop',['ngRoute','infinite-scroll'])
+    var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModule'])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider
             .when('/',{templateUrl:'views/main.html'})
             .when('/category',{templateUrl:'views/site-category.html'})
             .when('/searchWorks', {templateUrl: 'views/search-result.html'})
-            .when('/works/:work_id', {templateUrl: 'views/work-detail.html', controller: 'WorkDetailController'})
-            .when('/pay/:order_id', {templateUrl: 'views/pay.html', controller: 'PayController'})
+            .when('/work/:work_id', {templateUrl: 'views/work-detail.html'})
+            .when('/pay/:work_id', {templateUrl: 'views/pay.html'})
             .when('/pay-success/', {templateUrl: 'views/pay-success.html'})
             .otherwise({redirectTo:'/'});
         }]);
@@ -60,6 +60,7 @@
                 self.buyerLogin = false;
                 self.buyerName = '';
                 self.userId = 0;
+                window.location.href="login.html";
             });
         }
         self.getLoginUser();
@@ -107,26 +108,6 @@
                 $location.path("searchWorks");
             });
         };
-//        self.loadMore = function(){
-//            if(self.pageNum == undefined){
-//                self.pageNum = 1;
-//            }
-//            $http({
-//                url: "/api/work",
-//                method: "GET",
-//                params: {keyword: self.keyword,pageNum : self.pageNum+1}
-//            }).then(
-//                function(response){
-//                    if(self.works == undefined){
-//                        self.works = response.data;
-//                    }
-//                    for(var i = 0; i < response.data.length; i++){
-//                        self.works.push(response.data[i]);
-//                    }
-//                    self.pageNum = self.pageNum + 1;
-//                }
-//            );
-//        }
     }]);
 
     app.controller('SearchResultController',['SearchWorkService','$scope',
@@ -255,16 +236,74 @@
 //
 //    }]);
 
-    app.controller('WorkDetailController',['$scope','$http','$routeParams',
-        function($scope, $http,$routeParams) {
-            var work_id = $routeParams.work_id;
-            console.log(work_id);
+    app.controller('WorkDetailController',['$scope','$http','$routeParams','$location',
+        function($scope, $http,$routeParams,$location) {
+            var self = this;
+            self.workId = $routeParams.work_id;
+            console.log(self.workId);
+            $http.get('/api/work/' + self.workId).then(function(response){
+                self.work = response.data;
+                console.log(response.data);
+            },function(errResponse){
+                // 网络请求出错，返回主页
+                $location.path('#/');
+            });
 
     }]);
 
-    app.controller('PayController',['$scope','$http','$routeParams',
-        function($scope, $http,$routeParams) {
-            var order_id = $routeParams.order_id;
-            console.log(order_id);
-
+    app.controller('PayController',['$http','$routeParams','$window','localStorageService',
+        function( $http,$routeParams,$window,localStorageService) {
+            var self = this;
+            self.workId = $routeParams.work_id;
+            var order = {workId:self.workId};
+            console.log("支付页 workId：" + self.workId);
+            $http.post('/api/order',order).then(function(response){
+                self.order = response.data;
+                console.log(self.order);
+            },function(errResponse){
+                if(errResponse.status == 403){
+                    localStorageService.add('backUrl','index.html#/pay/'+self.workId);
+                    localStorageService.add('prompt',errResponse.data.msg);
+                    $window.location.href = "login.html";
+                }
+                if(errResponse.status == 404){
+                    $window.location.href = "index.html";
+                }
+            });
         }]);
+
+    app.controller('LoginController',['UserService','$location','localStorageService',
+        function(UserService,$location,localStorageService){
+        var self = this;
+        self.backUrl = localStorageService.get('backUrl');
+        self.prompt = localStorageService.get('prompt');
+        if(self.backUrl == undefined){
+            self.backUrl = 'index.html';
+        }
+
+
+        self.login = function(){
+            console.log(self.user);
+            UserService.login(self.user).then(function(){
+                self.loginError = false;
+                localStorageService.remove('prompt');
+                localStorageService.remove('backUrl');
+                window.location.href=self.backUrl;
+            },function(errResponse){
+                if(errResponse.status == 404){
+                    self.loginErrorMsg = "连接服务器失败，请检查网络";
+                }else if(errResponse.status == 401){
+                    self.loginErrorMsg = "用户名或密码错误";
+                }
+                self.loginError = true;
+            });
+        }
+
+    }]);
+    app.factory('UserService',['$http',function($http){
+        return {
+            login : function(user){
+                return $http.post('/api/session',user);
+            }
+        };
+    }]);

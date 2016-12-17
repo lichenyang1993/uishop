@@ -19,6 +19,7 @@ var demo = require('./routes/demo');
  */
 var userservice = require('./routes/userservice');
 var workservice = require('./routes/workservice');
+var orderservice = require('./routes/orderservice');
 
 var app = express();
 
@@ -60,6 +61,12 @@ app.delete('/api/session', userservice.logout);
 
 // 检索作品
 app.get('/api/work', workservice.searchWork);
+
+// 获取作品详情
+app.get('/api/work/:workId', workservice.getWorkById);
+
+// 提交订单
+app.post('/api/order', orderservice.createOrder)
 
 /// error handlers
 

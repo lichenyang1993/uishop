@@ -1,14 +1,14 @@
-<div class="row pay-page">
+<div class="row pay-page" ng-controller="PayController as ctrl">
     <span class="title"><img width="36px"  src="images/paypal.jpg">&nbsp;在线支付</span>
     <div class="row pay-box">
         <div class="col-xs-8 box">
-            <img class="product-img" src="images/product-details/1.jpg">
-            <span class="work-name">蓝色的官网</span>
+            <img class="product-img" src="{{ctrl.order.work.coverIcon}}">
+            <span class="work-name">{{ctrl.order.work.workName}}</span>
 
         </div>
         <div class="col-xs-4 price-container">
             <span class="price-tag">¥</span>
-            <span class="price"><strong>1600.00</strong></span><br>
+            <span class="price"><strong>{{ctrl.order.work.workPrice}}</strong></span><br>
         </div>
     </div>
     <div class="row">

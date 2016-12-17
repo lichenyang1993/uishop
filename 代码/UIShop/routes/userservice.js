@@ -16,7 +16,7 @@ exports.login = function (req, res) {
     var password = req.body.password;
     var userType = req.body.userType;
 
-    var user = {username:username,password:password,userType:userType};
+    var user = {username:username,userType:userType,userId:10000};
 
     if(username == '张三' && password=='123' && userType=='designer'){
         req.session.user = user;
