@@ -62,8 +62,54 @@ exports.createOrder = function (req, res) {
     // 生成订单数据
     var order = {
         orderId:10001,
-        user:user,
+        status:"unpaid",
+        buyer:user,
         work:work
     }
+
+    // 保存订单数据
+    var orders = req.session.orders;
+    if(orders == undefined){
+        orders = [];
+        req.session.orders = orders;
+    }
+    req.session.orders.push(order);
     res.json(order);
+}
+
+exports.payOrder = function (req, res) {
+    var user = req.session.user;
+    res.status(200);
+    if(user == undefined || user.userType=='designer'){
+        res.status(403);
+        res.json({msg:'请以买家身份登录后重试'});
+        return;
+    }
+
+    var orderId = req.body.orderId;
+    console.log("支付订单 orderId:" + orderId);
+    var orders = req.session.orders;
+    if(orders == undefined){
+        res.status(404);
+        res.json({msg:'未找到订单数据'});
+        return;
+    }
+    var isFind = false;
+    var orderIndex = -1;
+    for(var i = 0; i < orders.length; i++){
+        if(orderId == orders[i].orderId){
+            isFind = true;
+            orderIndex = i;
+            break;
+        }
+    }
+    if(!isFind){
+        res.status(404);
+        res.json({msg:'未找到订单数据'});
+        return;
+    }
+
+    // 进行支付
+    req.session.orders[i].status="paid";
+    res.json({msg:'支付成功'});
 }

@@ -325,18 +325,18 @@ a.nav-logout {
     margin-bottom: 6px;
 }
 
-.pay-success {
+.pay-success,.pay-fail {
     background-color: #FFF;
     text-align: center;
     padding: 150px 0;
 }
 
-.pay-success img{
+.pay-success img,.pay-fail img{
     width: 40px;
     vertical-align: middle;
 }
 
-.pay-success span{
-    font-size: 24px;
+.pay-success span, .pay-fail span{
+    font-size: 18px;
     margin: 6px;
 }

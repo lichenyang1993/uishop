@@ -68,6 +68,8 @@ app.get('/api/work/:workId', workservice.getWorkById);
 // 提交订单
 app.post('/api/order', orderservice.createOrder)
 
+// 支付订单
+app.put('/api/order', orderservice.payOrder)
 /// error handlers
 
 // development error handler

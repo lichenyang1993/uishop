@@ -15,6 +15,7 @@
             .when('/work/:work_id', {templateUrl: 'views/work-detail.html'})
             .when('/pay/:work_id', {templateUrl: 'views/pay.html'})
             .when('/pay-success/', {templateUrl: 'views/pay-success.html'})
+            .when('/pay-fail/', {templateUrl: 'views/pay-fail.html'})
             .otherwise({redirectTo:'/'});
         }]);
 
@@ -251,8 +252,8 @@
 
     }]);
 
-    app.controller('PayController',['$http','$routeParams','$window','localStorageService',
-        function( $http,$routeParams,$window,localStorageService) {
+    app.controller('PayController',['$http','$routeParams','$window','$location','localStorageService',
+        function( $http,$routeParams,$window,$location,localStorageService) {
             var self = this;
             self.workId = $routeParams.work_id;
             var order = {workId:self.workId};
@@ -270,6 +271,46 @@
                     $window.location.href = "index.html";
                 }
             });
+            // 支付
+            self.pay = function(){
+                $http.put('/api/order',self.order).then(function(response){
+                    // 支付成功，跳转到支付成功页
+                    $location.path('pay-success');
+                },function(errResponse){
+                    if(errResponse.status == 403){
+                        localStorageService.add('backUrl','index.html#/pay/'+self.workId);
+                        localStorageService.add('prompt',errResponse.data.msg);
+                        $window.location.href = "login.html";
+                    }
+                    if(errResponse.status == 404){
+                        // 重新创建订单
+//                        $window.location.href = "index.html#/work/"+self.workId;
+                        localStorageService.add('backUrl','index.html#/pay/'+self.workId);
+                        $location.path('pay-fail');
+                    }
+                });
+            };
+        }]);
+
+    app.controller('PayFailController',['$interval','$window','localStorageService',
+        function($interval,$window,localStorageService){
+            var self= this;
+            $interval(function(){
+                self.backUrl = localStorageService.get('backUrl');
+                if(self.backUrl == undefined){
+                    self.backUrl = 'index.html';
+                }
+                localStorageService.remove('backUrl');
+                $window.location.href = self.backUrl;
+            },1000,1);
+        }]);
+
+    app.controller('PaySuccessController',['$interval','$window',
+        function($interval,$window){
+            var self= this;
+            $interval(function(){
+                $window.location.href = 'buyer-backend.html';
+            },1000,1);
         }]);
 
     app.controller('LoginController',['UserService','$location','localStorageService',
