@@ -19,6 +19,7 @@ exports.login = function (req, res) {
     var user = {username:username,userType:userType,userId:10000};
 
     if(username == '张三' && password=='123' && userType=='designer'){
+        user.userId = 10001;
         req.session.user = user;
         console.log(req.session);
         res.status(200);
@@ -27,6 +28,7 @@ exports.login = function (req, res) {
     }
 
     if(username == '李四' && password=='123' && userType=='buyer'){
+        user.userId = 10000;
         req.session.user = user;
         res.status(200);
         res.json({msg:'登录成功'});

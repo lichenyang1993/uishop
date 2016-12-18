@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded());
 app.use(session({
     secret: '12345',
     name: 'ui-shop',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: {maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: {maxAge: 1200000 },  //设置maxAge是120000ms，即20min后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: false
 }));
@@ -71,6 +71,9 @@ app.post('/api/order', orderservice.createOrder)
 // 支付订单
 app.put('/api/order', orderservice.payOrder)
 /// error handlers
+
+// 获取买家订单
+app.get('/api/buyer/order', orderservice.getBuyerOrder)
 
 // development error handler
 // will print stacktrace

@@ -110,3 +110,12 @@ body{
     color: #a94442;
     display: block;
 }
+
+
+.unrecv {
+    color: #a94442;
+}
+
+.recv {
+    color:#3c763d
+}

@@ -38,7 +38,7 @@ describe('Font End Header Module Testcase',function() {
                     "upload/works/2.jpg",
                     "upload/works/3.jpg"
                 ],
-                fileZip:"upload/works/zips/1324.zip"
+                fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
             }
         ];
     }));

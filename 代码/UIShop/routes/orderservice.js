@@ -56,7 +56,7 @@ exports.createOrder = function (req, res) {
 //                "upload/works/2.jpg",
 //                "upload/works/3.jpg"
 //            ],
-//            fileZip:"upload/works/zips/1324.zip"
+//            fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
     };
 
     // 生成订单数据
@@ -110,6 +110,30 @@ exports.payOrder = function (req, res) {
     }
 
     // 进行支付
-    req.session.orders[i].status="paid";
+    req.session.orders[orderIndex].status="paid";
+    req.session.orders[orderIndex].fileZip="/upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip";
     res.json({msg:'支付成功'});
+}
+
+exports.getBuyerOrder = function (req, res) {
+    var user = req.session.user;
+    res.status(200);
+    if(user == undefined || user.userType=='designer'){
+        res.status(403);
+        res.json({msg:'请以买家身份登录后重试'});
+        return;
+    }
+    var orders = req.session.orders;
+    if(orders == undefined || orders.length == 0){
+        res.json([]);
+        return;
+    }
+    var buyOrderList = [];
+    for(var i = 0; i < orders.length; i++){
+        if(orders[i].buyer.userId == user.userId &&
+            (orders[i].status=='paid' || orders[i].status=='finished')){
+            buyOrderList.push(orders[i]);
+        }
+    }
+    res.json(buyOrderList);
 }

@@ -1,0 +1,51 @@
+<div id="page-wrapper" ng-controller="OrderController as ctrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">已购买的作品</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <span class="no-data-prompt" ng-show="ctrl.orders==undefined || ctrl.orders.length==0">
+                <i class="fa fa-smile-o fa-fw"></i>没有已购买作品</span>
+            <table class="work-list" ng-show="ctrl.orders.length>0">
+                <thead>
+                    <tr>
+                        <th>作品名</th>
+                        <th>设计师</th>
+                        <th>价格</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in ctrl.orders">
+                        <td class="work-cover"><img src="{{order.work.coverIcon}}"><span class="work-name">{{order.work.workName}}</span></td>
+                        <td><a href="javascript:void(0);">{{order.work.designer.name}}</a></span></td>
+                        <td><span class="price">¥{{order.work.workPrice}}</span></td>
+                        <td ng-show="order.status=='paid'"><span class="unrecv">未收货</span> </td>
+                        <td ng-show="order.status=='finished'"><span class="recv">已收货</span> </td>
+                        <td>
+                            <a href="index.html#work/{{order.work.workId}}">查看</a>
+                            <a href="{{order.fileZip}}">下载作品</a>
+                            <a href="#/" ng-show="order.status=='paid'">确认收货</a>
+                            <a href="#/" ng-show="order.status=='paid'">申请售后</a>
+                        </td>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<td class="work-cover"><img src="images/products/6.png"><span class="work-name">网通购</span></td>-->
+                        <!--<td><a href="javascript:void(0);">rrrmandy</a></span></td>-->
+                        <!--<td><span class="price">¥3000.00</span></td>-->
+                        <!--<td><span class="recv">已收货</span> </td>-->
+                        <!--<td>-->
+                            <!--<a href="#/">查看</a>-->
+                            <!--<a href="#/">下载作品</a>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
