@@ -9,11 +9,11 @@ var app = angular.module('ui-designer-backend',['ngRoute','remoteValidation'])
     .config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/',{templateUrl:'views/designer-backend/dashboard.html'})
-        .when('/unsold-work',{templateUrl:'views/designer-backend/unsold-work.html'})
-        .when('/sold-work',{templateUrl:'views/designer-backend/sold-work.html'})
-        .when('/unsend-order',{templateUrl:'views/designer-backend/unsend-order.html'})
-        .when('/unrecv-order',{templateUrl:'views/designer-backend/my-order.html'})
-        .when('/finish-order',{templateUrl:'views/designer-backend/finish-order.html'})
+        .when('/my-work',{templateUrl:'views/designer-backend/my-work.html'})
+//        .when('/sold-work',{templateUrl:'views/designer-backend/sold-work.html'})
+//        .when('/unsend-order',{templateUrl:'views/designer-backend/unsend-order.html'})
+//        .when('/unrecv-order',{templateUrl:'views/designer-backend/my-order.html'})
+//        .when('/finish-order',{templateUrl:'views/designer-backend/finish-order.html'})
         .when('/new-work',{templateUrl:'views/designer-backend/new-work.html'})
         .when('/unfinished-workorder',{templateUrl:'views/designer-backend/unfinished-workorder.html'})
         .when('/finished-workorder',{templateUrl:'views/designer-backend/finished-workorder.html'})
@@ -84,45 +84,8 @@ app.controller('DesignerHeaderController',['$location','$http',function($locatio
 
 
 
-app.controller('NewWorkController',function($scope, $http,$compile) {
-    $scope.picCount = 1; // 图片计数
-    $scope.addBigPic = function (){
-        console.log("添加大图");
-        var workPicDiv = document.getElementById("workPicDiv");
-
-        $scope.picCount = $scope.picCount + 1;
-
-        // 添加div
-//        <div class="workPicItem">
-//            <input type="file" name="workBigPic1" class="form-control">
-//            <button class="btn btn-danger btn-sm workPicDel">删除</button>
-//        </div>
-        var workItem = document.createElement("div");
-        workItem.className = "workPicItem";
-
-        var input = document.createElement('input');
-        input.setAttribute('type','file');
-        input.setAttribute('name','workBigPic'+$scope.picCount);
-        input.setAttribute('id','workBigPic'+$scope.picCount);
-        input.className = 'form-control pic-file';
-
-        var btn = document.createElement('button');
-        btn.className = "btn btn-danger btn-sm workPicDel";
-        btn.innerHTML = "删除";
-        btn.setAttribute("ng-click","deletePic($event);");
-        workItem.appendChild(input);
-        workItem.appendChild(btn);
-
-        angular.element(workPicDiv).append( $compile(workItem.outerHTML)($scope) )
-
-    }
-
-    $scope.deletePic = function($event){
-        var workPicDiv = document.getElementById("workPicDiv");
-        var btn = angular.element($event.currentTarget);
-        var parent = btn[0].parentNode;
-        workPicDiv.removeChild(parent);
-    }
+app.controller('NewWorkController',function($scope, $http) {
+    initNewWorkFormValidate();
 
     $scope.saveNewWork = function(){
         var fd = new FormData();

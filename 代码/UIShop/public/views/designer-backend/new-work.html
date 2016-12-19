@@ -5,7 +5,7 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <div class="row" ng-controller="NewWorkController" id="new-work-box">
+    <div class="row"  id="new-work-box">
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -14,59 +14,57 @@
                 <div class="panel-body">
                     <div class="row newWorkDiv">
                         <div class="col-lg-8">
-                            <form name="newWorkForm">
+                            <form name="newWorkForm" id="newWorkForm">
                                 <div class="form-group">
                                     <label>作品名</label>
-                                    <input name="workName" class="form-control"
-                                            ng-model="workName"
-                                            ng-remote-validate="/UIShop/jsons/validation/workname-check.json"
-                                            ng-remote-throttle="550"
-                                            ng-remote-method="GET"
-                                            required>
-                                    <span ng-show="newWorkForm.workName.$error.required && newWorkForm.$dirty">
-                                        请输入作品名
-                                    </span>
-                                    <span ng-show="newWorkForm.workName.$error.ngRemoteValidate">
-                                        已经有相同名字的作品
-                                    </span>
+                                    <input name="workName" class="form-control" id="workName">
                                 </div>
                                 <div class="form-group">
                                     <label>封面</label>
-                                    <input type="file" name="workCover" class="form-control" id="workCover" fileread="workCover" required>
-                                    <span ng-show="newWorkForm.workCover.$error.required && newWorkForm.workCover.$dirty">
-                                        请选择封面
-                                    </span>
+                                    <input type="file" name="workCover" class="form-control" id="workCover">
                                 </div>
                                 <div class="form-group">
                                     <label>售价</label>
-                                    <input name="workPrice" class="form-control" ng-model="price">
+                                    <input name="workPrice" class="form-control" id="workPrice">
 
                                 </div>
                                 <div class="form-group">
                                     <label>描述文本(可不填)</label>
-                                    <textarea name="workDescription" ng-model="workDescription" class="form-control work-description" rows="6"></textarea>
+                                    <textarea name="workDescription" id="workDescription" class="form-control work-description" rows="6"></textarea>
                                 </div>
                                 <div class="form-group" id="workPicDiv">
-                                    <input type="hidden" ng-model="picCount">
                                     <label>作品大图</label>
                                     <div class="workPicItem">
-                                        <input type="file" name="workBigPic1" class="form-control pic-file">
-                                        <button class="btn btn-danger btn-sm workPicDel" ng-click="deletePic($event)">删除</button>
+                                        <input type="file" name="workPic[]" class="form-control pic-file">
+                                    </div>
+
+                                </div>
+                                <div class="form-group hide" id="workPicDivTemplate">
+                                    <div class="workPicItem">
+                                        <input type="file" name="workPic[]" class="form-control pic-file">
+                                        <button class="btn btn-danger btn-sm workPicDel" onclick="deletePic(this)">删除</button>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
-                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm" ng-click="addBigPic()">添加大图</a>
+                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm" onclick="addWorkPic()">添加大图</a>
                                 </div>
+                                <div class="form-group" id="workFileDiv">
+                                    <label>作品文件(.zip或.rar)</label>
+                                    <div class="workPicItem">
+                                        <input type="file" name="workFile" id="workFile" class="form-control pic-file">
+                                    </div>
+
+                                </div>
+                                <span class="upload-prompt hide" id="upload-prompt">作品正在上传，请耐心等待...</span>
                                 <div class="submit-div">
-                                    <button class="btn btn-success" type="submit" ng-click="saveNewWork()"
-                                            ng-disabled="newWorkForm.$invalid || newWorkForm.$pending">
+                                    <button class="btn btn-success"  onclick="saveNewWork()">
                                         <i class="fa fa-cloud-upload  fa-fw"></i>发布作品
                                     </button>
+                                    <button class="btn btn-default" >
+                                        返回
+                                    </button>
                                 </div>
-                                <!--<div class="form-group">-->
-                                <!--<input type="file" name="workBigPic1" class="form-control">-->
-                                <!--</div>-->
                             </form>
 
                         </div>
@@ -76,3 +74,6 @@
         </div>
     </div>
 </div>
+<script>
+    initNewWorkFormValidate();
+</script>
