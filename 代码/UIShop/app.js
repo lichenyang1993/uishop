@@ -66,6 +66,9 @@ app.get('/api/work', workservice.searchWork);
 // 提交作品
 app.post('/api/work', workservice.submitWork);
 
+// 获取设计师作品列表
+app.get('/api/designer/work',workservice.getDesignerWorks);
+
 // 获取作品详情
 app.get('/api/work/:workId', workservice.getWorkById);
 

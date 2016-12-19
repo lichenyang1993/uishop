@@ -5,7 +5,7 @@
  * Time: 下午1:07
  * To change this template use File | Settings | File Templates.
  */
-var app = angular.module('ui-designer-backend',['ngRoute','remoteValidation'])
+var app = angular.module('ui-designer-backend',['ngRoute','remoteValidation','LocalStorageModule'])
     .config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/',{templateUrl:'views/designer-backend/dashboard.html'})
@@ -39,7 +39,8 @@ app.directive("fileread", [function () {
     }
 }]);
 
-app.controller('DesignerHeaderController',['$location','$http',function($location,$http){
+app.controller('DesignerHeaderController',['$scope','$location','$http','UserService',
+    function($scope,$location,$http,UserService){
     var self = this;
     self.isActive = function (viewLocation) {
         return viewLocation === $location.path();
@@ -56,14 +57,17 @@ app.controller('DesignerHeaderController',['$location','$http',function($locatio
 //                console.log('获取当前登录用户',
 //                response);
             if(response.data.userType=='designer'){
+                self.user = response.data;
                 self.user.designerLogin = true;
                 self.user.designerName = response.data.username;
+                self.user.userId = response.data.userId;
+                UserService.setUser(self.user);
             }else if(response.data.userType=='buyer'){
                 window.location.href="index.html";
             }else{
                 window.location.href="index.html";
             }
-            self.userId = response.data.userId;
+
         },function(errResponse){
             window.location.href="index.html";
         });
@@ -82,31 +86,46 @@ app.controller('DesignerHeaderController',['$location','$http',function($locatio
 
 }]);
 
-
-
-app.controller('NewWorkController',function($scope, $http) {
-    initNewWorkFormValidate();
-
-    $scope.saveNewWork = function(){
-        var fd = new FormData();
-        fd.append('workName',$scope.workName);
-
-        var cover = document.getElementById('workCover');
-        fd.append('workCover',cover.files[0]);
-        fd.append('price',$scope.price);
-        fd.append('workDescription',$scope.workDescription);
-
-        var bigPics = document.getElementsByClassName("pic-file");
-        for(var i = 0; i < bigPics.length; i++){
-            fd.append(bigPics[i].getAttribute('name'),bigPics[i].files[0]);
+app.factory('UserService',function(){
+    var self = this;
+    self.user = undefined;
+    return {
+        getUser:function(){
+            return self.user;
+        },
+        setUser:function(user){
+            self.user=user;
         }
-        $http.post('upload.php', fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        })
-            .success(function (data, status, headers, config) {
-            })
-            .error(function (data, status, header, config) {
-            });
     }
+})
+
+app.controller('NewWorkController',function() {
+    initNewWorkFormValidate();
 });
+
+app.controller('DesignerAccountController',['$scope','UserService',
+    function($scope,UserService){
+    var self = this;
+    $scope.$watch(function () { return UserService.getUser(); },function(user){
+        self.user=user;
+    });
+}])
+
+app.controller('DesignerWorkController',['$http','localStorageService',
+    function($http,localStorageService){
+    var self = this;
+    self.init = function(){
+        $http.get('/api/designer/work').then(function(response){
+            self.unsoldWorks = response.data.unsoldWorks;
+            self.soldWorks = response.data.soldWorks;
+        },function(errResponse){
+            if(errResponse.status == 403){
+                localStorageService.add('backUrl','designer-backend.html#/my-work');
+                localStorageService.add('prompt','请以设计师身份登录后重试');
+                window.location.href="login.html";
+            }
+        });
+    };
+    self.init();
+
+}]);

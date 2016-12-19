@@ -14,7 +14,7 @@
                 <div class="panel-heading">
                     <i class="fa fa-user fa-fw"></i> 账号概况
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" ng-controller="DesignerAccountController as ctrl">
                     <div class="list-group">
                                 <span class="list-group-item">
                                     <!--<i class="fa fa-shopping-cart fa-fw"></i> 3 个未发货订单-->
@@ -23,8 +23,8 @@
                                     <!--</span>-->
                                     <div class="designer clearfix">
                                         <div class="designer-div">
-                                            <img src="images/avatars/10.png" class="avatar"><br>
-                                            <span>cky798</span>
+                                            <img src="{{ctrl.user.userIcon}}" class="avatar"><br>
+                                            <span>{{ctrl.user.username}}</span>
                                         </div>
 
                                         <div class="rate-div">

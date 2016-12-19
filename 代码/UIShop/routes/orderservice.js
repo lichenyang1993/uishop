@@ -59,13 +59,15 @@ exports.createOrder = function (req, res) {
 //            fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
     };
 
+
     // 生成订单数据
     var order = {
         orderId:10001,
-        status:"unpaid",
-        buyer:user,
+        status:"paid",
+        buyer:buyer,
         work:work
     }
+
 
     // 保存订单数据
     var orders = req.session.orders;

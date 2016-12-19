@@ -1,7 +1,7 @@
-<div id="page-wrapper">
+<div id="page-wrapper" ng-controller="DesignerWorkController as ctrl">
     <div class="row">
         <div class="col-lg-12">
-            <h3 class="page-header">未售出作品</h3>
+            <h3 class="page-header">我的作品</h3>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -14,26 +14,61 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <table class="work-list">
-                <thead>
+             <span class="no-data-prompt" ng-show="(ctrl.unsoldWorks==undefined || ctrl.unsoldWorks.length==0) && (ctrl.soldWorks==undefined || ctrl.soldWorks.length==0)">
+                <i class="fa fa-smile-o fa-fw"></i>您还没有发布作品</span>
+            <div ng-show="ctrl.unsoldWorks.length>0">
+                <h4 class="page-header">未售出作品</h4>
+                <table  class="work-list">
+                    <thead>
                     <tr>
                         <th>作品名</th>
                         <th>标价</th>
                         <th>操作</th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="work-cover"><img src="images/products/7.jpg"><span class="work-name">蓝色的官网</span></td>
-                        <td><span class="price">¥1600.00</span></td>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="work in ctrl.unsoldWorks">
+                        <td class="work-cover"><img src="{{work.coverIcon}}"><span class="work-name">{{work.workName}}</span></td>
+                        <td><span class="price">¥{{work.workPrice}}</span></td>
                         <td>
-                            <a href="#/"><i class="fa fa-eye fa-fw"></i>查看</a>
-                            <a href="#/"><i class="fa fa-pencil fa-fw"></i>编辑</a>
-                            <a href="#/"><i class="fa fa-trash-o fa-fw"></i>删除</a>
+                            <a href="index.html#/work/{{work.workId}}"><i class="fa fa-eye fa-fw"></i>查看</a>
+                            <a href="javascript:void(0);"><i class="fa fa-pencil fa-fw"></i>编辑</a>
+                            <a href="javascript:void(0);"><i class="fa fa-trash-o fa-fw"></i>删除</a>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-show="ctrl.soldWorks.length>0">
+                <h4 class="page-header">已售出作品</h4>
+                <table  class="work-list">
+                    <thead>
+                    <tr>
+                        <th>作品名</th>
+                        <th>售价</th>
+                        <th>买家</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="order in ctrl.soldWorks">
+                        <td class="work-cover"><img src="{{order.work.coverIcon}}"><span class="work-name">{{order.work.workName}}</span></td>
+                        <td><span class="price">¥{{order.work.workPrice}}</span></td>
+                        <td><a href="javascript:void(0);">{{order.buyer.username}}</a></td>
+                        <td>
+                            <span ng-show="order.status=='paid'" class="unrecv">未收货</span>
+                            <span ng-show="order.status=='finished'" class="recv">已收货</span>
+                        </td>
+                        <td>
+                            <a href="index.html#/work/{{order.work.workId}}"><i class="fa fa-eye fa-fw"></i>查看</a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>

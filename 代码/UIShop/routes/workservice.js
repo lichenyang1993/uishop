@@ -89,6 +89,13 @@ exports.getWorkById = function (req, res) {
 
 // 设计师发布设计
 exports.submitWork = function(req, res){
+    var user = req.session.user;
+    res.status(200);
+    if(user == undefined || user.userType=='designer'){
+        res.status(403);
+        res.json({msg:'请以买家身份登录后重试'});
+        return;
+    }
     var date = new Date();
     var folder= '' + date.getYear() + date.getMonth() + date.getDate();
     console.log('folder:' + folder);
@@ -144,4 +151,61 @@ exports.submitWork = function(req, res){
 
     res.status(200)
     res.json({msg:'上传成功'});
+}
+
+// 获得设计师作品（已卖出和未卖出）
+exports.getDesignerWorks = function(req, res){
+    var user = req.session.user;
+    res.status(200);
+    if(user == undefined || user.userType=='buyer'){
+        res.status(403);
+        res.json({msg:'请以设计师身份登录后重试'});
+        return;
+    }
+    var work =
+    {
+        workId:1324,
+        workName:"蓝色的官网",
+        workPrice:1600.00,
+        category:{
+            id:1,
+            name:"social",
+            text:"社交/论坛"
+        },
+        designer:{
+            id:10001,
+            name:"rrrmandy",
+            icon:"images/avatars/10.png"
+//                ,
+//                balance:10000.00
+        },
+        workDesc:"为蓝色的产品设计的官网，希望大家喜欢\n\n换行测试",
+        coverIcon:"images/product-details/1.jpg",
+        fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
+    };
+
+    var unsoldWorks = [work,work,work];
+    var buyer = {
+        userId:1,
+        username:"李四",
+        userType:"buyer",
+        userIcon:""
+
+    };
+    var order = {
+        orderId:10001,
+        status:"paid",
+        buyer:buyer,
+        work:work
+    }
+
+    var order2 = {
+        orderId:10002,
+        status:"finished",
+        buyer:buyer,
+        work:work
+    }
+
+    var soldWorks = [order,order2,order2];
+    res.json({unsoldWorks:unsoldWorks,soldWorks:soldWorks});
 }
