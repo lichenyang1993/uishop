@@ -86,12 +86,12 @@ function saveNewWork(){
     fd.append('workFile',workFile);
     var workPics = document.getElementsByClassName("pic-file");
     for(var i = 0; i < workPics.length; i++){
-        fd.append('workPic[]',workPics[i].files[0]);
+        fd.append('workPic['+i+']',workPics[i].files[0]);
     }
 
     $('#upload-prompt').removeClass('hide');
     $.ajax({
-        url: '/upload.php',
+        url: '/api/work',
         type: 'POST',
         cache: false,
         data: fd,

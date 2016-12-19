@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 //用户登录功能
+var User = require('../db_module/user')
 exports.login = function (req, res) {
     console.log('用户登录',
         req.body.username,
@@ -16,29 +17,26 @@ exports.login = function (req, res) {
     var password = req.body.password;
     var userType = req.body.userType;
 
-    var user = {username:username,userType:userType,userId:10000};
-
-    if(username == '张三' && password=='123' && userType=='designer'){
-        user.userId = 10001;
-        req.session.user = user;
-        console.log(req.session);
-        res.status(200);
-        res.json({msg:'登录成功'});
-        return;
-    }
-
-    if(username == '李四' && password=='123' && userType=='buyer'){
-        user.userId = 10000;
-        req.session.user = user;
-        res.status(200);
-        res.json({msg:'登录成功'});
-        return;
-    }
-
-    req.session.user = undefined;
-    console.log(req.session);
-    res.status(401);
-    res.json({msg:'用户名或密码错误'});
+    User.findOne({username : username}, function(err, result){
+        if(err){
+            console.log("Error: " + err);
+        } else{
+            console.log("Res: " + result);
+            var user = result;
+            if(user != null && user.password == password && user.userType == userType){
+                req.session.user = user;
+                console.log(req.session);
+                res.status(200);
+                res.json({msg:'登录成功'});
+                return;
+            }else{
+                req.session.user = undefined;
+                console.log(req.session);
+                res.status(401);
+                res.json({msg:'用户名或密码错误'});
+            }
+        }
+    });
 }
 
 //获取当前登录信息

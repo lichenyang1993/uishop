@@ -66,8 +66,9 @@ function del(){
         }
     })
 }
+console.log(new Date().getYear());
 
-insert();
+//insert();
 //update();
 //findByIdAndUpdate();
 //del();

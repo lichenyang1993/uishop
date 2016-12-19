@@ -29,7 +29,8 @@ app.set('view engine', 'jade');
 
 app.use(favicon());
 app.use(logger('dev'));
-app.use(express.bodyParser({uploadDir:'./upload'}));
+// var path = './public/upload';
+app.use(express.bodyParser({uploadDir:'./public/upload'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(session({
@@ -62,15 +63,20 @@ app.delete('/api/session', userservice.logout);
 // 检索作品
 app.get('/api/work', workservice.searchWork);
 
+// 提交作品
+app.post('/api/work', workservice.submitWork);
+
 // 获取作品详情
 app.get('/api/work/:workId', workservice.getWorkById);
 
 // 提交订单
-app.post('/api/order', orderservice.createOrder)
+app.post('/api/order', orderservice.createOrder);
 
 // 支付订单
 app.put('/api/order', orderservice.payOrder)
 /// error handlers
+
+
 
 // 获取买家订单
 app.get('/api/buyer/order', orderservice.getBuyerOrder)
@@ -101,5 +107,9 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
+// exports.getPath = function(){
+//     return path;
+// }
 
 module.exports = app;
