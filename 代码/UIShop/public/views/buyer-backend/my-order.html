@@ -31,7 +31,7 @@
                             <a href="index.html#work/{{order.work.workId}}">查看</a>
                             <a href="{{order.fileZip}}">下载作品</a>
                             <a href="#/" ng-show="order.status=='paid'">确认收货</a>
-                            <a href="#/" ng-show="order.status=='paid'">申请售后</a>
+                            <a href="#/customer-service/{{order.work.workId}}" ng-show="order.status=='paid'">申请售后</a>
                         </td>
                     </tr>
                     <!--<tr>-->

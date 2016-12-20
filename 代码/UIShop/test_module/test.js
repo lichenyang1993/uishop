@@ -1,8 +1,12 @@
 /**
+ * Created by Administrator on 2016/12/20 0020.
+ */
+/**
  * Created by Administrator on 2016/12/12 0012.
  */
-var User = require("./user.js");
-
+var User = require('/user');
+var Category = require('/category');
+var Work = require('/work');
 /**
  * 插入
  */

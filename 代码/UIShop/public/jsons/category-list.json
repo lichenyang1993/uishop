@@ -2,12 +2,12 @@
     "categorys": [
         {
             "name": "门户网站",
-            "url": "#/",
+            "url": "#/category/menhu",
             "img": "images/category/menhu.png"
         },
         {
             "name": "行业网站",
-            "url": "#/",
+            "url": "#/category/hangye",
             "img": "images/category/hangye.jpg"
         },
         {

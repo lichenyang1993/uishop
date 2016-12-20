@@ -6,6 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 var fs = require('fs');
+var Work = require('../db_module/work');
+var Category = require('../db_module/category');
+var User =require('../db_module/user');
 exports.searchWork = function (req, res) {
     var searchResult = {
         works : [
@@ -89,65 +92,83 @@ exports.getWorkById = function (req, res) {
 
 // 设计师发布设计
 exports.submitWork = function(req, res){
-    var user = req.session.user;
-    res.status(200);
-    if(user == undefined || user.userType=='designer'){
-        res.status(403);
-        res.json({msg:'请以买家身份登录后重试'});
-        return;
-    }
-    var date = new Date();
-    var folder= '' + date.getYear() + date.getMonth() + date.getDate();
-    console.log('folder:' + folder);
-    var app = require('../app');
-    var dirPath = app.getPath();
 
 
     var workName = req.body.workName;
     var workPrice = req.body.workPrice;
     var workDescription = req.body.workDescription;
     var workFile = req.files.workFile;
-    var workPic = req.files.workPic;
+    //workFile.originalFilename;
+    var workPics = req.files.workPic;
     var workCover = req.files.workCover;
-
-    console.log(workFile);
-    console.log(workPic);
-    console.log(workCover);
-
-    // path = workFile.path;
-    // var fileName = path.substring(dirPath.length);
-    // console.log(fileName);
-    //
-    // workFile.rename(file.path, '', function(err){
-    //     if (err) throw err;
-    // });
+    var workCategoryId = req.body.workCategoryId;
 
 
-    // var upfile = req.files;
-    // var files = [];
-    //
-    // if (upfile instanceof  Array) {
-    //     files = upfile;
-    // } else {
-    //     files.push(upfile);
-    // }
-    // for(var i = 0; i < files.length; i++){
-    //     console.log('here');
-    //     var file = files[0];
-    //     console.log(file);
-    // }
+    // 将文件移至指定文件夹
+    var date = new Date();
+    var folder = '' + date.getYear() + (date.getMonth()+1) + date.getDate()
+    var path = "./public/upload/" + folder + "/";
+    var db_path = 'upload/' + folder + '/';
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
+    }
+    var wf_temp_path = workFile.path;
+    var wf_temp_name = wf_temp_path.substring("./public/upload".length);
+    fs.rename(wf_temp_path, path + wf_temp_name, function (err) {
+        if(err){
+            throw err;
+        }
+    });
 
+    var wc_temp_path = workCover.path;
+    var wc_temp_name = wc_temp_path.substring("./public/upload".length);
+    var coverPath = db_path + wc_temp_name;
+    fs.rename(wc_temp_path, path + wc_temp_name, function (err) {
+        if(err){
+            throw err;
+        }
+    });
 
-    // for (var i = 0; i < files.length; i++) {
-    //     var file = files[i];
-    //     var path = file.path;
-    //     var name = file.name;
-    //     var target_path = "./upload/" + name;
-    //
-    //     fs.rename(path, target_path, function (err) {
-    //         if (err) throw err;
-    //     });
-    // }
+    var workImages = new Array();
+    for(var i = 0; i < workPics.length; i++){
+        var wp_temp_path = workPics[i].path;
+        var wp_temp_name = wp_temp_path.substring("./public/upload".length);
+        workImages.push(db_path + wp_temp_name);
+        fs.rename(wp_temp_path, path + wp_temp_name, function (err) {
+            if(err){
+                throw err;
+            }
+        });
+    }
+
+    // 向数据库中插入work项
+
+    console.log("here");
+    console.log("CoverIcon： " + path+wf_temp_name);
+    var work = new Work({
+        workId : generateUUID(),
+        workName : workName,
+        workPrice : workPrice,
+        categoryId :workCategoryId,
+        designerId : req.session.user.userId,
+        workDesc : workDescription,
+        workImage : workImages,
+        coverIcon : coverPath
+    });
+    console.log("work: " + work);
+    work.save(function (err, res) {
+        if (err) {
+            console.log("Error:" + err);
+        }
+        else {
+            console.log("Res:" + res);
+        }
+
+    });
+
+    // console.log(workFile);
+    // console.log(workPics);
+    // console.log(workCover);
 
     res.status(200)
     res.json({msg:'上传成功'});
@@ -155,6 +176,9 @@ exports.submitWork = function(req, res){
 
 // 获得设计师作品（已卖出和未卖出）
 exports.getDesignerWorks = function(req, res){
+    var self = this;
+
+
     var user = req.session.user;
     res.status(200);
     if(user == undefined || user.userType=='buyer'){
@@ -162,6 +186,49 @@ exports.getDesignerWorks = function(req, res){
         res.json({msg:'请以设计师身份登录后重试'});
         return;
     }
+
+    self.unsoldWorks = new Array();
+    Work.find({designerId: 2}, function(err, works){
+        if(err){
+            console.log(err);
+        }else{
+            res.json({unsoldWorks:works});
+            for( var i = 0, size = works.length; i < size; i++){
+                var work = {};
+                work.workId = works[i].workId;
+                work.workName = works[i].workName;
+                work.workPrice = works[i].workPrice;
+                work.category = '';
+                work.designer = '';
+                work.workDesc = works[i].workDesc;
+                work.coverIcon = works[i].coverIcon;
+
+                var categoryId = works[i].categoryId
+                var count = 0;
+                Category.findOne({id : categoryId}, function (err, category) {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        // work.category = category;
+                        // User.findOne({userId : 2}, function(err, user){
+                        //     if(err){
+                        //         console.log(err);
+                        //     }else{
+                        //         work.designer = user;
+                        //         console.log(work);
+                        //         self.unsoldWorks.push(work);
+                        //         count ++;
+                        //         if(count == size){
+                        //             res.json({unsoldWorks:self.unsoldWorks,soldWorks:soldWorks});
+                        //         }
+                        //     }
+                        // });
+                    }
+                });
+            }
+        }
+    });
+
     var work =
     {
         workId:1324,
@@ -184,7 +251,9 @@ exports.getDesignerWorks = function(req, res){
         fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
     };
 
-    var unsoldWorks = [work,work,work];
+
+
+    //var unsoldWorks = [work,work,work];
     var buyer = {
         userId:1,
         username:"李四",
@@ -207,5 +276,15 @@ exports.getDesignerWorks = function(req, res){
     }
 
     var soldWorks = [order,order2,order2];
-    res.json({unsoldWorks:unsoldWorks,soldWorks:soldWorks});
+
 }
+
+function generateUUID() {
+    var d = new Date().getTime();
+    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return uuid;
+};

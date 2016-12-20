@@ -340,3 +340,47 @@ a.nav-logout {
     font-size: 18px;
     margin: 6px;
 }
+
+.no-data-prompt {
+    display: inline-block;
+    width: 100%;
+    padding: 100px 0 150px 0;
+    font-size: 28px;
+    text-align: center;
+    color: #34495e;
+}
+
+.shop-cart-remove-btn {
+    padding: 6px 6px;
+    font-size:16px;
+    color: #a94442;
+}
+
+.add-shopcart-prompt-success {
+    color:#3c763d
+}
+
+.add-shopcart-prompt-error {
+    color: #a94442;
+}
+
+.shop-cart-count {
+    position: absolute;
+    top: 12px;
+    left: 68px;
+    right: auto;
+    display: inline-block;
+    padding: 1px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #fff;
+    background-color: #f10215;
+    border-radius: 7px;
+    min-width: 12px;
+    text-align: center;
+    font-style: normal;
+}
+
+#shopping-cart-tab{
+    position: relative;
+}

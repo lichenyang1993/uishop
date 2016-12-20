@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel='stylesheet'  href='css/bootstrap.min.css' />
     <link rel='stylesheet'  href='css/flexslider.css' />
+    <link href="css/font-awesome.css" rel="stylesheet">
     <link rel='stylesheet'  href='css/nav.css' />
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.flexslider-min.js"></script>
@@ -38,7 +39,12 @@
                 <li ng-class="{ active: headerCtrl.isActive('/category')}"><a href="#/category">设计分类</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-
+                <li >
+                    <a href="#/shop-cart" id="shopping-cart-tab">
+                        <i class="fa fa-shopping-cart fa-fw"></i>购物车
+                        <i ng-show="headerCtrl.shopWorkCount>0" class="shop-cart-count">{{headerCtrl.shopWorkCount}}</i>
+                    </a>
+                </li>
                 <li ng-show="headerCtrl.designerLogin"><a href="designer-backend.html">{{headerCtrl.designerName}}</a></li>
                 <li ng-show="headerCtrl.buyerLogin"><a href="buyer-backend.html">{{headerCtrl.buyerName}}</a></li>
                 <li ng-show="headerCtrl.buyerLogin || headerCtrl.designerLogin">

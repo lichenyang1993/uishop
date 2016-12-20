@@ -22,7 +22,7 @@ var workservice = require('./routes/workservice');
 var orderservice = require('./routes/orderservice');
 
 var app = express();
-
+var fs = require('fs');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -48,7 +48,7 @@ app.get('/', routes.index);
 app.get('/users', users.list);
 app.get('/getMethodTest', getMethodTest.getMethod);
 app.post('/postMethodTest', postMethodTest.postMethod);
-app.post('/fileUploadTest', fileUploadTest.postFile);
+//app.post('/fileUploadTest', fileUploadTest.postFile);
 app.get('/demo', demo.getdemo);
 
 // 用户登录
@@ -60,11 +60,37 @@ app.get('/api/session', userservice.getLoginUser);
 // 退出登录
 app.delete('/api/session', userservice.logout);
 
+
+// 检查是否登录
+app.all('/api/work', function(req, res, next){
+    var user = req.session.user;
+    if(user == undefined){
+        var workFile = req.files.workFile;
+        var workPics = req.files.workPic;
+        var workCover = req.files.workCover;
+
+        fs.unlink(workFile.path, function(err){});
+        fs.unlink(workCover.path, function(err){});
+        for(var i = 0; i < workPics.length; i++){
+            fs.unlink(workPics[i].path, function(err){});
+        }
+
+        res.status(403);
+        console.log('经过过滤器');
+        res.end('没有登录');
+        return;
+    }else {
+        next();
+    }
+});
+
 // 检索作品
 app.get('/api/work', workservice.searchWork);
 
 // 提交作品
 app.post('/api/work', workservice.submitWork);
+
+
 
 // 获取设计师作品列表
 app.get('/api/designer/work',workservice.getDesignerWorks);

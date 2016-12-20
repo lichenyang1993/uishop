@@ -1,0 +1,36 @@
+<div class="row pay-page" ng-controller="ShopCartController as ctrl">
+    <span class="title">购物车</span>
+    <div  ng-hide="ctrl.works.length > 0">
+        <span class="no-data-prompt">
+         <i class="fa fa-shopping-cart fa-fw"></i>购物车空空如野，快去逛逛吧~<br>
+            <button class="btn btn-default" ng-click="ctrl.goBack()">返回</button>
+        </span>
+
+    </div>
+
+    <div ng-show="ctrl.works.length > 0">
+        <div class="row pay-box" ng-repeat="work in ctrl.works">
+            <div class="col-xs-8 box">
+                <img class="product-img" src="{{work.coverIcon}}">
+                <span class="work-name">{{work.workName}}</span>
+
+            </div>
+            <div class="col-xs-4 price-container">
+                <span class="price-tag">¥</span>
+                <span class="price"><strong>{{work.workPrice}}</strong></span>&nbsp;&nbsp;
+                <button class="btn btn-default shop-cart-remove-btn" ng-click="ctrl.removeWork(work.workId)">
+                    <i class="fa fa-remove fa-fw"></i>删除</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-7" style="margin-bottom: 6px;">
+                <span class="totalText">总计</span>
+                <span class="price-tag">¥</span>
+                <span class="price"><strong>{{ctrl.totalPrice()}}</strong></span>
+                <a class="btn btn-danger" href="javascript:void(0);" ng-click="ctrl.pay()">
+                    <span><i class="fa fa-shopping-cart fa-fw"></i>立即支付</span></a>
+                <button class="btn btn-default" ng-click="ctrl.goBack()">返回</button>
+            </div>
+        </div>
+    </div>
+</div>

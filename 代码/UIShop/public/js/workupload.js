@@ -77,13 +77,17 @@ function saveNewWork(){
     var workPrice = $('#workPrice').val();
 //    var workDescription = $('#workDescription').text();
     var workDescription = document.getElementById('workDescription').value;
+    var oSelect = document.getElementById('workCategory');
+    var category = oSelect.options[oSelect.selectedIndex].value;
     var workFile = $('#workFile').get(0).files[0];
+
     var fd = new FormData();
     fd.append('workName',workName);
     fd.append('workCover',workCover);
     fd.append('workPrice',workPrice);
     fd.append('workDescription',workDescription);
     fd.append('workFile',workFile);
+    fd.append('workCategoryId',category)
     var workPics = document.getElementsByClassName("pic-file");
     for(var i = 0; i < workPics.length; i++){
         fd.append('workPic['+i+']',workPics[i].files[0]);
@@ -99,8 +103,11 @@ function saveNewWork(){
         contentType: false
     }).done(function(res) {
             alert('上传成功')
+            window.location.href="designer-backend.html#/my-work";
         }).fail(function(res) {
-            alert('上传失败')
+            if(res.status==403){
+                window.location.href="login.html";
+            }
         });
 }
 

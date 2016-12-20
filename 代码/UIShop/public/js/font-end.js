@@ -5,22 +5,113 @@
  * Time: 下午4:35
  * To change this template use File | Settings | File Templates.
  */
+Array.prototype.baoremove = function(dx)
+{
+    if(isNaN(dx)||dx>this.length){return false;}
+    this.splice(dx,1);
+}
 
-    var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModule'])
+var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModule'])
     .config(['$routeProvider', function($routeProvider){
         $routeProvider
             .when('/',{templateUrl:'views/main.html'})
             .when('/category',{templateUrl:'views/site-category.html'})
+            .when('/category/:categoryId',{templateUrl:'views/category-result.html'})
             .when('/searchWorks', {templateUrl: 'views/search-result.html'})
             .when('/work/:work_id', {templateUrl: 'views/work-detail.html'})
             .when('/pay/:work_id', {templateUrl: 'views/pay.html'})
-            .when('/pay-success/', {templateUrl: 'views/pay-success.html'})
-            .when('/pay-fail/', {templateUrl: 'views/pay-fail.html'})
+            .when('/pay-success', {templateUrl: 'views/pay-success.html'})
+            .when('/pay-fail', {templateUrl: 'views/pay-fail.html'})
+            .when('/shop-cart', {templateUrl: 'views/shop-cart.html'})
             .otherwise({redirectTo:'/'});
         }]);
 
-    app.controller('HeaderController',['$location','$http',function($location,$http){
+    app.factory('ShopCartService',function(){
         var self = this;
+        var observerCallbacks = [];
+
+        //register an observer
+//        self.registerObserverCallback = function(callback){
+//            observerCallbacks.push(callback);
+//        };
+
+        //call this when you know 'foo' has been changed
+        var notifyObservers = function(){
+            angular.forEach(observerCallbacks, function(callback){
+                callback();
+            });
+        };
+
+        self.works = [];
+
+        return{
+            registerObserverCallback:function(callback){
+                observerCallbacks.push(callback);
+            },
+            removeWork : function(workId){
+                for(var i = 0; i < self.works.length; i++){
+                    if(self.works[i].workId == workId){
+                        self.works.baoremove(i);
+                        notifyObservers();
+                        break;
+                    }
+                }
+            },
+            getWorks: function(){
+                return self.works;
+            },
+            addWork: function(work){
+                if(work == undefined){
+                    return false;
+                }
+                // 不能添加id相同的作品
+                for(var i = 0; i < self.works.length; i++){
+                    if(self.works[i].workId == work.workId){
+                        return false;
+                    }
+                }
+                self.works.push(work);
+                notifyObservers();
+                return true;
+            }
+        }
+    });
+
+    app.controller('ShopCartController',['$scope','ShopCartService',
+        function($scope,ShopCartService){
+        var self = this;
+
+        $scope.$watch(function () { return ShopCartService.getWorks(); },function(works){
+            self.works = works;
+        });
+        self.goBack = function(){
+            history.back();
+        }
+
+        self.removeWork = function(workId){
+            ShopCartService.removeWork(workId);
+        }
+
+        self.totalPrice = function(){
+            var sum = 0;
+            if(self.works == undefined || self.works.length == 0){
+                return 0;
+            }
+            for(var i = 0; i < self.works.length; i++){
+                sum += self.works[i].workPrice;
+            }
+            return sum;
+        }
+    }])
+
+    app.controller('HeaderController',['$location','$http','$scope','ShopCartService',
+        function($location,$http,$scope,ShopCartService){
+        var self = this;
+        var updateShopCart = function(){
+            self.shopWorkCount = ShopCartService.getWorks().length;
+        };
+        ShopCartService.registerObserverCallback(updateShopCart);
+
         self.isActive = function (viewLocation) {
             return viewLocation === $location.path();
         };
@@ -109,6 +200,35 @@
                 $location.path("searchWorks");
             });
         };
+    }]);
+
+    app.controller('WorkCategoryController',['$http',function($http){
+        var self = this;
+        self.pageCount = 1;
+        self.isLoad = false;
+
+        $http.get('/jsons/search-list.json').then(function(response){
+            self.pageCount = 1;
+            self.works = response.data.products;
+        })
+
+        self.loadMore = function(){
+            if(self.isLoad){
+                return;
+            }
+            self.isLoad = true;
+            var pageNum = self.pageCount + 1;
+            $http.get('/jsons/search-list-'+pageNum+'.json').then(function(response){
+                self.pageCount = self.pageCount + 1;
+                var ws = response.data.products;
+                for(var i = 0; i < ws.length; i++){
+                    self.works.push(ws[i]);
+                }
+                self.isLoad = false;
+            },function(){
+//                self.isLoad = false;
+            })
+        }
     }]);
 
     app.controller('SearchResultController',['SearchWorkService','$scope',
@@ -237,8 +357,8 @@
 //
 //    }]);
 
-    app.controller('WorkDetailController',['$scope','$http','$routeParams','$location',
-        function($scope, $http,$routeParams,$location) {
+    app.controller('WorkDetailController',['$scope','$http','$routeParams','$location','$interval','ShopCartService',
+        function($scope, $http,$routeParams,$location,$interval,ShopCartService) {
             var self = this;
             self.workId = $routeParams.work_id;
             console.log(self.workId);
@@ -249,7 +369,22 @@
                 // 网络请求出错，返回主页
                 $location.path('#/');
             });
-
+            self.addToCart = function(){
+                var addResult = ShopCartService.addWork(self.work);
+                self.addPrompt = {
+                    success:true,
+                    msg:"加入购物车成功!"
+                };
+                if(!addResult){
+                    self.addPrompt = {
+                        success:false,
+                        msg:"不能重复添加该作品"
+                    };
+                }
+                $interval(function(){
+                    self.addPrompt = undefined;
+                },1000,1);
+            }
     }]);
 
     app.controller('PayController',['$http','$routeParams','$window','$location','localStorageService',

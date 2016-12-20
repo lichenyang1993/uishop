@@ -11,6 +11,7 @@ var app = angular.module('ui-buyer-backend',['ngRoute','remoteValidation','Local
 //        .when('/',{templateUrl:'views/buyer-backend/dashboard.html'})
         .when('/',{redirectTo:'/my-order'})
         .when('/my-order',{templateUrl:'views/buyer-backend/my-order.html'})
+        .when('/customer-service/:work_id',{templateUrl:'views/buyer-backend/customer-service.html'})
         .otherwise({redirectTo:'/'});
 }]);
 
@@ -54,6 +55,12 @@ app.controller('BuyerHeaderController',['$location','$http','localStorageService
     }
     self.getLoginUser();
 
+
+}]);
+
+app.controller('CustomerServiceController',['$routeParams',function($routeParams){
+    var self = this;
+    self.workId = $routeParams.work_id;
 
 }]);
 
