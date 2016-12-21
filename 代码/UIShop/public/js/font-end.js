@@ -26,10 +26,9 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             .otherwise({redirectTo:'/'});
         }]);
 
-    app.factory('ShopCartService',function(){
+    app.factory('ShopCartService',['localStorageService',function(localStorageService){
         var self = this;
         var observerCallbacks = [];
-
         //register an observer
 //        self.registerObserverCallback = function(callback){
 //            observerCallbacks.push(callback);
@@ -43,7 +42,15 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
         };
 
         self.works = [];
-
+        // load一下
+        self.works = localStorageService.get('localShopCartWork');
+        if(self.works == undefined){
+            self.works = [];
+        }
+        notifyObservers();
+        self.updateLocalWork = function(){
+            localStorageService.set('localShopCartWork',self.works);
+        }
         return{
             registerObserverCallback:function(callback){
                 observerCallbacks.push(callback);
@@ -52,6 +59,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
                 for(var i = 0; i < self.works.length; i++){
                     if(self.works[i]._id == workId){
                         self.works.baoremove(i);
+                        self.updateLocalWork();
                         notifyObservers();
                         break;
                     }
@@ -59,6 +67,11 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             },
             getWorks: function(){
                 return self.works;
+            },
+            deleteAllWorks:function(){
+                self.works = [];
+                self.updateLocalWork();
+                notifyObservers();
             },
             addWork: function(work){
                 if(work == undefined){
@@ -71,14 +84,15 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
                     }
                 }
                 self.works.push(work);
+                self.updateLocalWork();
                 notifyObservers();
                 return true;
             }
         }
-    });
+    }]);
 
-    app.controller('ShopCartController',['$scope','ShopCartService',
-        function($scope,ShopCartService){
+    app.controller('ShopCartController',['$scope','$http','$location','ShopCartService','localStorageService',
+        function($scope,$http,$location,ShopCartService,localStorageService){
         var self = this;
 
         $scope.$watch(function () { return ShopCartService.getWorks(); },function(works){
@@ -90,6 +104,30 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
 
         self.removeWork = function(workId){
             ShopCartService.removeWork(workId);
+        }
+
+        self.pay = function(){
+            if(self.works == undefined || self.works.length == 0){
+                return;
+            }
+            // 获取作品的id列表
+            var workIds = [];
+            for(var i = 0; i < self.works.length; i++){
+                workIds.push(self.works[i]._id);
+            }
+            $http.post('/api/order',{workIds:workIds}).then(function(){
+                ShopCartService.deleteAllWorks();
+                $location.path('pay-success');
+            },function(errResponse){
+                if(errResponse.status == 403){
+                    localStorageService.add('backUrl','index.html#/shop-cart');
+                    localStorageService.add('prompt',errResponse.data.msg);
+                    window.location.href = "login.html";
+                }
+                if(errResponse.status == 404){
+                    window.location.href = "index.html";
+                }
+            });
         }
 
         self.totalPrice = function(){
@@ -116,6 +154,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             return viewLocation === $location.path();
         };
 
+        self.shopWorkCount = ShopCartService.getWorks().length;
         self.designerLogin = false;
         self.designerName = '';
         self.buyerLogin = false;

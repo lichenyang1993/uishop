@@ -28,7 +28,7 @@
                 <span class="price-tag">¥</span>
                 <span class="price"><strong>{{ctrl.totalPrice()}}</strong></span>
                 <a class="btn btn-danger" href="javascript:void(0);" ng-click="ctrl.pay()">
-                    <span><i class="fa fa-shopping-cart fa-fw"></i>立即支付</span></a>
+                    <span><i class="fa fa-shopping-cart fa-fw" ng-click="ctrl.pay()"></i>立即支付</span></a>
                 <button class="btn btn-default" ng-click="ctrl.goBack()">返回</button>
             </div>
         </div>

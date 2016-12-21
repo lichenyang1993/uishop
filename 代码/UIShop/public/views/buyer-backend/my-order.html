@@ -23,15 +23,15 @@
                 <tbody>
                     <tr ng-repeat="order in ctrl.orders">
                         <td class="work-cover"><img src="{{order.work.coverIcon}}"><span class="work-name">{{order.work.workName}}</span></td>
-                        <td><a href="javascript:void(0);">{{order.work.designer.name}}</a></span></td>
+                        <td><a href="javascript:void(0);">{{order.designer.username}}</a></span></td>
                         <td><span class="price">¥{{order.work.workPrice}}</span></td>
                         <td ng-show="order.status=='paid'"><span class="unrecv">未收货</span> </td>
                         <td ng-show="order.status=='finished'"><span class="recv">已收货</span> </td>
                         <td>
-                            <a href="index.html#work/{{order.work.workId}}">查看</a>
-                            <a href="{{order.fileZip}}">下载作品</a>
-                            <a href="#/" ng-show="order.status=='paid'">确认收货</a>
-                            <a href="#/customer-service/{{order.work.workId}}" ng-show="order.status=='paid'">申请售后</a>
+                            <a href="index.html#work/{{order.work._id}}">查看</a>
+                            <a href="{{order.work.fileZip}}">下载作品</a>
+                            <a href="javascript:void(0);" ng-show="order.status=='paid'" ng-click="ctrl.confirmPay(order._id)">确认收货</a>
+                            <a href="#/customer-service/{{order.work._id}}" ng-show="order.status=='paid'">申请售后</a>
                         </td>
                     </tr>
                     <!--<tr>-->

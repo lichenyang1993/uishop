@@ -11,7 +11,7 @@ var OrderSchema = new Schema({
     orderId:{type:Number},
     status:{type:String},
     buyerId:{type:Number},
-    workId:{type:Number}
+    work:{type:Number}
 
     // username : { type: String },                    //用户账号
     // userpwd: {type: String},                        //密码

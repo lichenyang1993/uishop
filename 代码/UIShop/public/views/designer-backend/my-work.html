@@ -39,7 +39,7 @@
                     </tbody>
                 </table>
             </div>
-            <div ng-show="ctrl.soldWorks.length>0">
+            <div ng-show="ctrl.orders.length>0">
                 <h4 class="page-header">已售出作品</h4>
                 <table  class="work-list">
                     <thead>
@@ -52,7 +52,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="order in ctrl.soldWorks">
+                    <tr ng-repeat="order in ctrl.orders">
                         <td class="work-cover"><img src="{{order.work.coverIcon}}"><span class="work-name">{{order.work.workName}}</span></td>
                         <td><span class="price">¥{{order.work.workPrice}}</span></td>
                         <td><a href="javascript:void(0);">{{order.buyer.username}}</a></td>
@@ -61,7 +61,7 @@
                             <span ng-show="order.status=='finished'" class="recv">已收货</span>
                         </td>
                         <td>
-                            <a href="index.html#/work/{{order.work.workId}}"><i class="fa fa-eye fa-fw"></i>查看</a>
+                            <a href="index.html#/work/{{order.work._id}}"><i class="fa fa-eye fa-fw"></i>查看</a>
                         </td>
 
                     </tr>

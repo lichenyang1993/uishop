@@ -10,7 +10,8 @@ var mongoose = require('../db.js'),
 var Order = new Schema({
     status:{type:String},
     buyer:{type:Schema.Types.ObjectId, ref:'User'},
-    workId:{type:Schema.Types.ObjectId, ref:'Work'}
+    designer:{type:Schema.Types.ObjectId, ref:'User'},
+    work:{type:Schema.Types.ObjectId, ref:'Work'}
 });
 
 module.exports = mongoose.model('Order',Order);

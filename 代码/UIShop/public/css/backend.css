@@ -123,3 +123,19 @@ body{
 .upload-prompt {
     color:#3c763d
 }
+
+.confirm-pay {
+    background-color: #FFF;
+    text-align: center;
+    padding: 150px 0;
+}
+
+.confirm-pay img{
+    width: 40px;
+    vertical-align: middle;
+}
+
+.confirm-pay span{
+    font-size: 18px;
+    margin: 6px;
+}

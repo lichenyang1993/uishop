@@ -99,16 +99,18 @@ app.get('/api/designer/work',workservice.getDesignerWorks);
 app.get('/api/work/:workId', workservice.getWorkById);
 
 // 提交订单
-app.post('/api/order', orderservice.createOrder);
+app.post('/api/order', orderservice.payOrders);
 
-// 支付订单
-app.put('/api/order', orderservice.payOrder)
+// 确认收货
+app.put('/api/order/:orderId', orderservice.confirmPayOrder);
 /// error handlers
 
 
 
 // 获取买家订单
 app.get('/api/buyer/order', orderservice.getBuyerOrder)
+// 获取设计师订单
+app.get('/api/designer/order', orderservice.getDesignerOrder)
 
 // development error handler
 // will print stacktrace

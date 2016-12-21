@@ -117,13 +117,15 @@ app.controller('DesignerWorkController',['$http','localStorageService',
     self.init = function(){
         $http.get('/api/designer/work').then(function(response){
             self.unsoldWorks = response.data.unsoldWorks;
-            self.soldWorks = response.data.soldWorks;
         },function(errResponse){
             if(errResponse.status == 403){
                 localStorageService.add('backUrl','designer-backend.html#/my-work');
                 localStorageService.add('prompt','请以设计师身份登录后重试');
                 window.location.href="login.html";
             }
+        });
+        $http.get('/api/designer/order').then(function(response){
+            self.orders = response.data;
         });
     };
     self.init();
