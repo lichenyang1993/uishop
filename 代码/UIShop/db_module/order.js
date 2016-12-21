@@ -4,7 +4,7 @@
 /**
  * 订单信息
  */
-var mongoose = require('../db.js'),
+var mongoose = require('../../db.js'),
     Schema = mongoose.Schema;
 
 var OrderSchema = new Schema({

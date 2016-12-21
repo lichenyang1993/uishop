@@ -61,6 +61,8 @@ app.get('/api/session', userservice.getLoginUser);
 app.delete('/api/session', userservice.logout);
 
 
+// 检索作品
+app.get('/api/work', workservice.searchWork);
 // 检查是否登录
 app.all('/api/work', function(req, res, next){
     var user = req.session.user;
@@ -84,8 +86,6 @@ app.all('/api/work', function(req, res, next){
     }
 });
 
-// 检索作品
-app.get('/api/work', workservice.searchWork);
 
 // 提交作品
 app.post('/api/work', workservice.submitWork);

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 //用户登录功能
-var User = require('../db_module/user')
+var User = require('../db/db_module/user')
 exports.login = function (req, res) {
     console.log('用户登录',
         req.body.username,

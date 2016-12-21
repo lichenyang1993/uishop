@@ -4,7 +4,7 @@
 /**
  * 设计作品
  */
-var mongoose = require('../db.js'),
+var mongoose = require('../../db.js'),
     Schema = mongoose.Schema;
 
 var WorkSchema = new Schema({

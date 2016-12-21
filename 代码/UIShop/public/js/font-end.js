@@ -50,7 +50,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             },
             removeWork : function(workId){
                 for(var i = 0; i < self.works.length; i++){
-                    if(self.works[i].workId == workId){
+                    if(self.works[i]._id == workId){
                         self.works.baoremove(i);
                         notifyObservers();
                         break;
@@ -66,7 +66,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
                 }
                 // 不能添加id相同的作品
                 for(var i = 0; i < self.works.length; i++){
-                    if(self.works[i].workId == work.workId){
+                    if(self.works[i]._id == work._id){
                         return false;
                     }
                 }

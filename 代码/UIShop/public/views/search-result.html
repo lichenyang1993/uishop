@@ -8,7 +8,7 @@
     <div class="row" infinite-scroll='ctrl.loadMore()' infinite-scroll-distance='2'>
         <div class="col-xs-6 col-sm-4 col-md-3 search-item" ng-repeat="work in ctrl.works">
             <div class="box">
-                <a class="main-link" href="#/work/{{work.workId}}">
+                <a class="main-link" href="#/work/{{work._id}}">
                     <img class="product-img" src="{{work.coverIcon}}">
                     <div class="top-container">
                         <span class="price-tag">¥</span>
@@ -17,7 +17,7 @@
                     </div>
                 </a>
                 <div>
-                    <span class="user-avatar"><a href="javascript:void(0);"><img src="{{work.designer.icon}}">{{work.designer.name}}</a></span>
+                    <span class="user-avatar"><a href="javascript:void(0);"><img src="{{work.designer.userIcon}}">{{work.designer.username}}</a></span>
                 </div>
             </div>
         </div>

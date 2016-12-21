@@ -4,7 +4,7 @@
 /**
  * 用户信息
  */
-var mongoose = require('../db.js'),
+var mongoose = require('../../db.js'),
     Schema = mongoose.Schema;
 
 var UserSchema = new Schema({

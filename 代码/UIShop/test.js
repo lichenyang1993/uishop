@@ -68,8 +68,8 @@ function del(){
 }
 console.log(new Date().getYear());
 
-var Work = require('./db_module/work')
-var Category = require('./db_module/category');
+var Work = require('./db/db_module/work')
+var Category = require('./db/db_module/category');
 
 
 // Work.find({designerId: 2}).populate('designerid').exec(function(err,docs){
