@@ -22,6 +22,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             .when('/pay/:work_id', {templateUrl: 'views/pay.html'})
             .when('/pay-success', {templateUrl: 'views/pay-success.html'})
             .when('/pay-fail', {templateUrl: 'views/pay-fail.html'})
+            .when('/searchWork', {redirectTo:'/searchWorks'})
             .when('/shop-cart', {templateUrl: 'views/shop-cart.html'})
             .otherwise({redirectTo:'/'});
         }]);
@@ -230,13 +231,18 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
             });
     });
 
-    app.controller('SearchWorkController',['SearchWorkService','$http','$location',function(SearchWorkService,$http,$location) {
+    app.controller('SearchWorkController',['SearchWorkService','$http','$location','$interval',
+        function(SearchWorkService,$http,$location,$interval) {
         var self = this;
 
         self.keywork = '';
         self.searchWork = function(){
+            if(self.keyword == '' || self.keyword==undefined){
+
+                return;
+            }
             SearchWorkService.searchWork(self.keyword).then(function(){
-                $location.path("searchWorks");
+                $location.path("searchWork");
             });
         };
     }]);
@@ -270,16 +276,20 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
         }
     }]);
 
-    app.controller('SearchResultController',['SearchWorkService','$scope',
-        function(SearchWorkService,$scope){
+    app.controller('SearchResultController',['SearchWorkService','$scope','$location',
+        function(SearchWorkService,$scope,$location){
         var self = this;
         self.searchKw = SearchWorkService.getKeyword();
         self.loadMore = SearchWorkService.loadMore();
         $scope.$watch(function () { return SearchWorkService.getKeyword(); },function(kw){
             self.searchKw = kw;
+            if(self.searchKw == undefined || self.searchKw==''){
+                $location.path('/');
+            }
         });
         $scope.$watch(function () { return SearchWorkService.getWorks(); },function(works){
             self.works = works;
+            $scope.$emit('works:filtered');
         });
         $scope.$watch(function () { return SearchWorkService.getResultCount(); },function(count){
             self.resultCount = count;
@@ -311,6 +321,7 @@ var app = angular.module('uishop',['ngRoute','infinite-scroll','LocalStorageModu
                 );
             },
             loadMore : function(){
+                console.log("load more");
                 $http({
                     url: "/api/work",
                     method: "GET",

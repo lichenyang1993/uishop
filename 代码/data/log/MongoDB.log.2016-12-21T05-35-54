@@ -1,0 +1,39 @@
+2016-12-21T01:21:06.900+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed, will zero-out data files
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] MongoDB starting : pid=1148 port=27017 dbpath=F:\data\db\ 64-bit host=TATJFVCTQGIJPL4
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] db version v3.2.11
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] git version: 009580ad490190ba33d1c6253ebd8d91808923e4
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2016-12-21T01:21:06.917+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten] modules: none
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten] build environment:
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-12-21T01:21:06.918+0800 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: "f:\data\log\MongoDB.log" } }
+2016-12-21T01:21:06.921+0800 I -        [initandlisten] Detected data files in F:\data\db\ created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-12-21T01:21:06.923+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=6G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-12-21T01:21:07.675+0800 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-12-21T01:21:07.675+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'F:/data/db/diagnostic.data'
+2016-12-21T01:21:07.679+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-12-21T01:21:08.090+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2825 #1 (1 connection now open)
+2016-12-21T01:21:13.195+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2827 #2 (2 connections now open)
+2016-12-21T01:21:13.654+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2828 #3 (3 connections now open)
+2016-12-21T01:21:28.988+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2832 #4 (4 connections now open)
+2016-12-21T01:21:29.091+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2833 #5 (5 connections now open)
+2016-12-21T11:26:59.848+0800 I NETWORK  [conn4] end connection 127.0.0.1:2832 (4 connections now open)
+2016-12-21T11:26:59.848+0800 I NETWORK  [conn5] end connection 127.0.0.1:2833 (4 connections now open)
+2016-12-21T11:26:59.905+0800 I NETWORK  [conn3] end connection 127.0.0.1:2828 (2 connections now open)
+2016-12-21T11:26:59.905+0800 I NETWORK  [conn2] end connection 127.0.0.1:2827 (1 connection now open)
+2016-12-21T11:27:00.803+0800 I NETWORK  [conn1] end connection 127.0.0.1:2825 (0 connections now open)
+2016-12-21T11:27:02.486+0800 I CONTROL  [thread1] CTRL_CLOSE_EVENT signal
+2016-12-21T11:27:02.486+0800 I CONTROL  [consoleTerminate] got CTRL_CLOSE_EVENT, will terminate after current cmd ends
+2016-12-21T11:27:02.486+0800 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2016-12-21T11:27:02.501+0800 I CONTROL  [consoleTerminate] now exiting
+2016-12-21T11:27:02.501+0800 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2016-12-21T11:27:02.501+0800 I NETWORK  [consoleTerminate] closing listening socket: 420
+2016-12-21T11:27:02.502+0800 I NETWORK  [consoleTerminate] shutdown: going to flush diaglog...
+2016-12-21T11:27:02.502+0800 I NETWORK  [consoleTerminate] shutdown: going to close sockets...
+2016-12-21T11:27:02.503+0800 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2016-12-21T11:27:02.607+0800 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2016-12-21T11:27:02.609+0800 I CONTROL  [consoleTerminate] dbexit:  rc: 12

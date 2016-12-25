@@ -34,7 +34,7 @@ exports.searchWork = function (req, res) {
                 var works = new Array();
                 var workSize = res_works.length;
                 console.log(workSize);
-                for(var i = 0 + (pageNum-1)*10; i < (workSize<10?workSize:10); i++){
+                for(var i = 0 + (pageNum-1)*10; i < (workSize<pageNum * 10?workSize:pageNum * 10); i++){
                     works.push(res_works[i]);
                 }
                 //console.log("here");
@@ -46,47 +46,6 @@ exports.searchWork = function (req, res) {
 
             }
         });
-
-
-//     var searchResult = {
-//         works : [
-//             {
-//                 workId:1324,
-//                 workName:"蓝色的官网",
-//                 workPrice:1600.00,
-//                 category:{
-//                     id:1,
-//                     name:"social",
-//                     text:"社交/论坛"
-//                 },
-//                 designer:{
-//                     id:10001,
-//                     name:"rrrmandy",
-//                     icon:"images/avatars/10.png"
-// //                    ,balance:10000.00
-//                 },
-//                 workDesc:"为蓝色的产品设计的官网，希望大家喜欢\n\n换行测试",
-//                 coverIcon:"images/product-details/1.jpg",
-//                 images:[
-//                     "images/works/1.jpg",
-//                     "images/works/2.jpg",
-//                     "images/works/3.jpg"
-//                 ]
-// //                ],
-// //                fileList:[
-// //                    "upload/works/1.jpg",
-// //                    "upload/works/2.jpg",
-// //                    "upload/works/3.jpg"
-// //                ],
-// //                fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
-//             }
-//         ],
-//         resultCount:2
-//     };
-//     console.log(req.query.pageNum);
-//     console.log(req.query.keyword);
-//     res.status(200);
-//     res.json(searchResult);
 }
 
 // 根据Id获取作品详情
@@ -105,46 +64,6 @@ exports.getWorkById = function (req, res) {
                 res.json(work);
             }
         });
-
-
-
-
-
-//     var work =
-//         {
-//             workId:1324,
-//             workName:"蓝色的官网",
-//             workPrice:1600.00,
-//             category:{
-//                 id:1,
-//                 name:"social",
-//                 text:"社交/论坛"
-//             },
-//             designer:{
-//                 id:10001,
-//                 name:"rrrmandy",
-//                 icon:"images/avatars/10.png"
-// //                ,
-// //                balance:10000.00
-//             },
-//             workDesc:"为蓝色的产品设计的官网，希望大家喜欢\n\n换行测试",
-//             coverIcon:"images/product-details/1.jpg",
-//             images:[
-//                 "images/works/1.jpg",
-//                 "images/works/2.jpg",
-//                 "images/works/3.jpg"
-//             ]
-// //            ,
-// //            fileList:[
-// //                "upload/works/1.jpg",
-// //                "upload/works/2.jpg",
-// //                "upload/works/3.jpg"
-// //            ],
-// //            fileZip:"upload/works/zips/dce74e53-e35f-4b69-846b-409950c93800.zip"
-//         };
-//     console.log("作品ID：" + req.params.workId);
-// //    res.status(400);
-//     res.json(work);
 }
 
 // 设计师发布设计
@@ -184,6 +103,7 @@ exports.submitWork = function(req, res){
     // 移动作品压缩文件
     var wf_temp_path = workFile.path;
     var wf_temp_name = wf_temp_path.substring("./public/upload".length);
+    var filePath = db_path + wf_temp_name;
     fs.rename(wf_temp_path, path + wf_temp_name, function (err) {
         if(err){
             throw err;
@@ -221,7 +141,9 @@ exports.submitWork = function(req, res){
         designer : designerId,
         workDesc : workDescription,
         workImage : workImages,
-        coverIcon : coverPath
+        coverIcon : coverPath,
+        fileZip : filePath,
+        workStatus : 'unpaid'
     });
     console.log("work: " + work);
     work.save(function (err, work) {
@@ -248,7 +170,7 @@ exports.getDesignerWorks = function(req, res){
     self.unsoldWorks = new Array();
 
     // 查询当前设计师未售出的设计作品
-    Work.find({designer:user._id})
+    Work.find({designer:user._id, workStatus:"unpaid"})
         .populate('designer','_id username userType userIcon',null)
         .populate('category','_id name text',null)
         .exec(function(err, docs){

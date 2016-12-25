@@ -1,0 +1,16 @@
+2016-12-19T18:55:09.308+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed, will zero-out data files
+2016-12-19T18:55:09.324+0800 I CONTROL  [initandlisten] MongoDB starting : pid=7756 port=27017 dbpath=F:\data\db\ 64-bit host=TATJFVCTQGIJPL4
+2016-12-19T18:55:09.324+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-12-19T18:55:09.324+0800 I CONTROL  [initandlisten] db version v3.2.11
+2016-12-19T18:55:09.324+0800 I CONTROL  [initandlisten] git version: 009580ad490190ba33d1c6253ebd8d91808923e4
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten] modules: none
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten] build environment:
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-12-19T18:55:09.325+0800 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: "f:\data\log\MongoDB.log" } }
+2016-12-19T18:55:09.326+0800 E NETWORK  [initandlisten] listen(): bind() failed errno:10048 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。 for socket: 0.0.0.0:27017
+2016-12-19T18:55:09.327+0800 E STORAGE  [initandlisten] Failed to set up sockets during startup.
+2016-12-19T18:55:09.329+0800 I CONTROL  [initandlisten] dbexit:  rc: 48

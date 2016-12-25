@@ -84,7 +84,7 @@ a.nav-logout {
 }
 
 .top-designer-list ul li span {
-    width: calc(100%-76px);
+    width: calc(100% - 76px);
     max-width:160px;
     height: 56px;
     line-height: 56px ;

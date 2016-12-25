@@ -30,7 +30,10 @@
                 <div class="copyright-dest">
                     您支付的价格已经包含了该作品的版权转让费用，购买后您将拥有该作品的全部版权。
                 </div>
-                <a class="btn btn-danger" href="javascript:void(0)" ng-click="ctrl.addToCart()">加入购物车</a><br>
+                <a class="btn btn-danger" ng-show="ctrl.work.workStatus=='unpaid'" href="javascript:void(0)"
+                   ng-click="ctrl.addToCart()">加入购物车</a>
+                <a class="btn btn-default" ng-hide="ctrl.work.workStatus=='unpaid'" href="javascript:void(0)" disabled>
+                    该作品已经售出</a><br>
                 <span ng-show="ctrl.addPrompt.success" class="add-shopcart-prompt-success"><strong>{{ctrl.addPrompt.msg}}</strong></span>
                 <span ng-show="!ctrl.addPrompt.success" class="add-shopcart-prompt-error"><strong>{{ctrl.addPrompt.msg}}</strong></span>
             </div>

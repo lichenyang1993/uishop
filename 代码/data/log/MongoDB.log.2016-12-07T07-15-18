@@ -1,0 +1,15 @@
+2016-11-29T08:04:53.416+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed, will zero-out data files
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] MongoDB starting : pid=3816 port=27017 dbpath=C:\data\db\ 64-bit host=TATJFVCTQGIJPL4
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] db version v3.2.11
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] git version: 009580ad490190ba33d1c6253ebd8d91808923e4
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] modules: none
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] build environment:
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: "f:\data\log\MongoDB.log" } }
+2016-11-29T08:04:53.431+0800 I STORAGE  [initandlisten] exception in initAndListen: 29 Data directory C:\data\db\ not found., terminating
+2016-11-29T08:04:53.431+0800 I CONTROL  [initandlisten] dbexit:  rc: 100

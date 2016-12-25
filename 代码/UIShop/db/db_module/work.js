@@ -15,7 +15,8 @@ var Work= new Schema({
     designer:{type:Schema.Types.ObjectId, ref:'User'},//作品设计人
     workImage:{type:[String]},//作品图例
     coverIcon:{type:String},//作品封面
-    fileZip:{type:String}//作品下载路径
+    fileZip:{type:String},//作品下载路径
+    workStatus:{type:String}    // 作品状态，unpaid、paid、finished
 });
 
 module.exports = mongoose.model('Work',Work);

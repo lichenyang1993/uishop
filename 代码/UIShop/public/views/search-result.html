@@ -5,7 +5,10 @@
         </div>
 
     </div>
-    <div class="row" infinite-scroll='ctrl.loadMore()' infinite-scroll-distance='2'>
+    <div class="row" infinite-scroll='ctrl.loadMore()' infinite-scroll-distance='2'
+         infinite-scroll-listen-for-event="works:filtered"
+         infinite-scroll-immediate-check='true'
+         infinite-scroll-parent="true">
         <div class="col-xs-6 col-sm-4 col-md-3 search-item" ng-repeat="work in ctrl.works">
             <div class="box">
                 <a class="main-link" href="#/work/{{work._id}}">

@@ -94,9 +94,22 @@ function insertCategory(){
 // insertUser();
 // insertCategory();
 
-var Work = require("./work")
+// var Work = require("./work")
+//
+// var keyword = '测试'
+// Work.find({workName: eval("/"+keyword+"/i")},function(err,res){
+//     console.log(res);
+// });
 
-var keyword = '测试'
-Work.find({workName: eval("/"+keyword+"/i")},function(err,res){
-    console.log(res);
-});
+//User.findByIdAndUpdate()
+var Work = require('../db_module/work');
+Work.findByIdAndUpdate({_id:"585b69c3c3ca4a5c17bcad08"},{"workName":"我的小设计"})
+    .populate('designer','_id username userType userIcon',null)
+    .populate('category','_id name text',null)
+    .exec(function(err, work){
+        if(err){
+            console.log(err);
+        }else {
+            console.log(work);
+        }
+    });

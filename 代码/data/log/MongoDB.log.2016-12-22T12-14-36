@@ -1,0 +1,183 @@
+2016-12-22T18:22:43.719+0800 I CONTROL  [main] Hotfix KB2731284 or later update is not installed, will zero-out data files
+2016-12-22T18:22:43.735+0800 I CONTROL  [initandlisten] MongoDB starting : pid=2944 port=27017 dbpath=F:\data\db\ 64-bit host=TATJFVCTQGIJPL4
+2016-12-22T18:22:43.735+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2016-12-22T18:22:43.735+0800 I CONTROL  [initandlisten] db version v3.2.11
+2016-12-22T18:22:43.735+0800 I CONTROL  [initandlisten] git version: 009580ad490190ba33d1c6253ebd8d91808923e4
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1t-fips  3 May 2016
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten] modules: none
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten] build environment:
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-12-22T18:22:43.736+0800 I CONTROL  [initandlisten] options: { systemLog: { destination: "file", path: "f:\data\log\MongoDB.log" } }
+2016-12-22T18:22:43.808+0800 I -        [initandlisten] Detected data files in F:\data\db\ created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-12-22T18:22:43.824+0800 W -        [initandlisten] Detected unclean shutdown - F:\data\db\mongod.lock is not empty.
+2016-12-22T18:22:43.824+0800 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2016-12-22T18:22:43.826+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=6G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-12-22T18:22:44.753+0800 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-12-22T18:22:44.753+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'F:/data/db/diagnostic.data'
+2016-12-22T18:22:44.827+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-12-22T18:22:44.852+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2106 #1 (1 connection now open)
+2016-12-22T18:22:45.066+0800 I FTDC     [ftdc] Unclean full-time diagnostic data capture shutdown detected, found interim file, some metrics may have been lost. OK
+2016-12-22T18:22:57.783+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2225 #2 (2 connections now open)
+2016-12-22T18:22:58.182+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:2230 #3 (3 connections now open)
+2016-12-22T18:24:57.951+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3293 #4 (4 connections now open)
+2016-12-22T18:24:58.022+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3296 #5 (5 connections now open)
+2016-12-22T18:26:05.684+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3920 #6 (6 connections now open)
+2016-12-22T18:26:05.690+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3921 #7 (7 connections now open)
+2016-12-22T18:26:05.692+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3922 #8 (8 connections now open)
+2016-12-22T18:26:05.693+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3923 #9 (9 connections now open)
+2016-12-22T18:26:05.695+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:3924 #10 (10 connections now open)
+2016-12-22T18:26:05.868+0800 I NETWORK  [conn6] end connection 127.0.0.1:3920 (9 connections now open)
+2016-12-22T18:26:05.868+0800 I NETWORK  [conn9] end connection 127.0.0.1:3923 (9 connections now open)
+2016-12-22T18:26:05.868+0800 I NETWORK  [conn8] end connection 127.0.0.1:3922 (9 connections now open)
+2016-12-22T18:26:05.868+0800 I NETWORK  [conn7] end connection 127.0.0.1:3921 (7 connections now open)
+2016-12-22T18:26:05.868+0800 I NETWORK  [conn10] end connection 127.0.0.1:3924 (5 connections now open)
+2016-12-22T18:26:26.458+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:4118 #11 (6 connections now open)
+2016-12-22T18:26:26.461+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:4119 #12 (7 connections now open)
+2016-12-22T18:26:26.463+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:4120 #13 (8 connections now open)
+2016-12-22T18:26:26.464+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:4121 #14 (9 connections now open)
+2016-12-22T18:26:26.465+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:4122 #15 (10 connections now open)
+2016-12-22T18:31:02.683+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:6802 #16 (11 connections now open)
+2016-12-22T18:31:02.712+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:6807 #17 (12 connections now open)
+2016-12-22T18:31:02.731+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:6808 #18 (13 connections now open)
+2016-12-22T18:31:02.756+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:6810 #19 (14 connections now open)
+2016-12-22T18:31:02.774+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:6813 #20 (15 connections now open)
+2016-12-22T18:32:09.421+0800 I COMMAND  [conn18] command UIShop.orders command: insert { insert: "orders", writeConcern: { w: 1 }, ordered: true, documents: [ { status: "paid", buyer: ObjectId('585a16d18779cde400a26b2e'), work: ObjectId('585b69c3c3ca4a5c17bcad08'), designer: ObjectId('585a16d18779cde400a26b2d'), _id: ObjectId('585baba90d3dfd280434a114'), __v: 0 } ] } ninserted:1 keyUpdates:0 writeConflicts:0 numYields:0 reslen:40 locks:{ Global: { acquireCount: { r: 1, w: 1 } }, Database: { acquireCount: { w: 1 } }, Collection: { acquireCount: { w: 1 } } } protocol:op_query 159ms
+2016-12-22T18:33:58.989+0800 I NETWORK  [conn19] end connection 127.0.0.1:6810 (14 connections now open)
+2016-12-22T18:33:58.990+0800 I NETWORK  [conn16] end connection 127.0.0.1:6802 (13 connections now open)
+2016-12-22T18:33:58.990+0800 I NETWORK  [conn20] end connection 127.0.0.1:6813 (12 connections now open)
+2016-12-22T18:33:58.990+0800 I NETWORK  [conn18] end connection 127.0.0.1:6808 (11 connections now open)
+2016-12-22T18:33:58.993+0800 I NETWORK  [conn17] end connection 127.0.0.1:6807 (10 connections now open)
+2016-12-22T18:34:05.316+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:8569 #21 (11 connections now open)
+2016-12-22T18:34:05.372+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:8570 #22 (12 connections now open)
+2016-12-22T18:34:05.386+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:8571 #23 (13 connections now open)
+2016-12-22T18:34:05.423+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:8572 #24 (14 connections now open)
+2016-12-22T18:34:05.438+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:8573 #25 (15 connections now open)
+2016-12-22T18:34:48.061+0800 I NETWORK  [conn24] end connection 127.0.0.1:8572 (14 connections now open)
+2016-12-22T18:34:48.061+0800 I NETWORK  [conn21] end connection 127.0.0.1:8569 (13 connections now open)
+2016-12-22T18:34:48.061+0800 I NETWORK  [conn25] end connection 127.0.0.1:8573 (12 connections now open)
+2016-12-22T18:34:48.065+0800 I NETWORK  [conn22] end connection 127.0.0.1:8570 (11 connections now open)
+2016-12-22T18:34:48.065+0800 I NETWORK  [conn23] end connection 127.0.0.1:8571 (11 connections now open)
+2016-12-22T18:34:54.996+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9050 #26 (11 connections now open)
+2016-12-22T18:34:55.000+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9051 #27 (12 connections now open)
+2016-12-22T18:34:55.001+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9053 #28 (13 connections now open)
+2016-12-22T18:34:55.003+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9055 #29 (14 connections now open)
+2016-12-22T18:34:55.004+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9056 #30 (15 connections now open)
+2016-12-22T18:35:35.261+0800 I NETWORK  [conn5] end connection 127.0.0.1:3296 (14 connections now open)
+2016-12-22T18:35:35.267+0800 I NETWORK  [conn4] end connection 127.0.0.1:3293 (13 connections now open)
+2016-12-22T18:35:36.036+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9442 #31 (14 connections now open)
+2016-12-22T18:35:36.097+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:9443 #32 (15 connections now open)
+2016-12-22T18:36:25.361+0800 I NETWORK  [conn26] end connection 127.0.0.1:9050 (14 connections now open)
+2016-12-22T18:36:25.361+0800 I NETWORK  [conn29] end connection 127.0.0.1:9055 (13 connections now open)
+2016-12-22T18:36:25.362+0800 I NETWORK  [conn30] end connection 127.0.0.1:9056 (12 connections now open)
+2016-12-22T18:36:25.368+0800 I NETWORK  [conn27] end connection 127.0.0.1:9051 (11 connections now open)
+2016-12-22T18:36:25.369+0800 I NETWORK  [conn28] end connection 127.0.0.1:9053 (10 connections now open)
+2016-12-22T18:37:04.560+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10331 #33 (11 connections now open)
+2016-12-22T18:37:04.565+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10332 #34 (12 connections now open)
+2016-12-22T18:37:04.567+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10333 #35 (13 connections now open)
+2016-12-22T18:37:04.569+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10334 #36 (14 connections now open)
+2016-12-22T18:37:04.570+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10335 #37 (15 connections now open)
+2016-12-22T18:38:03.788+0800 I NETWORK  [conn36] end connection 127.0.0.1:10334 (14 connections now open)
+2016-12-22T18:38:03.789+0800 I NETWORK  [conn33] end connection 127.0.0.1:10331 (13 connections now open)
+2016-12-22T18:38:03.789+0800 I NETWORK  [conn37] end connection 127.0.0.1:10335 (12 connections now open)
+2016-12-22T18:38:03.791+0800 I NETWORK  [conn35] end connection 127.0.0.1:10333 (11 connections now open)
+2016-12-22T18:38:03.794+0800 I NETWORK  [conn34] end connection 127.0.0.1:10332 (10 connections now open)
+2016-12-22T18:38:10.590+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10963 #38 (11 connections now open)
+2016-12-22T18:38:10.594+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10964 #39 (12 connections now open)
+2016-12-22T18:38:10.596+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10965 #40 (13 connections now open)
+2016-12-22T18:38:10.598+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10966 #41 (14 connections now open)
+2016-12-22T18:38:10.600+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:10967 #42 (15 connections now open)
+2016-12-22T18:38:52.705+0800 I NETWORK  [conn40] end connection 127.0.0.1:10965 (14 connections now open)
+2016-12-22T18:38:52.706+0800 I NETWORK  [conn41] end connection 127.0.0.1:10966 (13 connections now open)
+2016-12-22T18:38:52.706+0800 I NETWORK  [conn39] end connection 127.0.0.1:10964 (12 connections now open)
+2016-12-22T18:38:52.706+0800 I NETWORK  [conn38] end connection 127.0.0.1:10963 (11 connections now open)
+2016-12-22T18:38:52.708+0800 I NETWORK  [conn42] end connection 127.0.0.1:10967 (10 connections now open)
+2016-12-22T18:38:58.497+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:11424 #43 (11 connections now open)
+2016-12-22T18:38:58.501+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:11425 #44 (12 connections now open)
+2016-12-22T18:38:58.503+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:11426 #45 (13 connections now open)
+2016-12-22T18:38:58.504+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:11427 #46 (14 connections now open)
+2016-12-22T18:38:58.506+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:11428 #47 (15 connections now open)
+2016-12-22T18:41:08.322+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:12637 #48 (16 connections now open)
+2016-12-22T18:41:08.405+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:12640 #49 (17 connections now open)
+2016-12-22T18:41:14.685+0800 I COMMAND  [conn2] CMD: drop UIShop.orders
+2016-12-22T18:41:16.688+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:12718 #50 (18 connections now open)
+2016-12-22T18:41:16.746+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:12719 #51 (19 connections now open)
+2016-12-22T18:41:20.004+0800 I COMMAND  [conn2] CMD: drop UIShop.works
+2016-12-22T18:41:29.691+0800 I NETWORK  [conn32] end connection 127.0.0.1:9443 (18 connections now open)
+2016-12-22T18:41:29.692+0800 I NETWORK  [conn31] end connection 127.0.0.1:9442 (17 connections now open)
+2016-12-22T18:41:30.650+0800 I NETWORK  [conn49] end connection 127.0.0.1:12640 (16 connections now open)
+2016-12-22T18:41:30.658+0800 I NETWORK  [conn48] end connection 127.0.0.1:12637 (15 connections now open)
+2016-12-22T18:41:31.009+0800 I NETWORK  [conn51] end connection 127.0.0.1:12719 (14 connections now open)
+2016-12-22T18:41:31.010+0800 I NETWORK  [conn50] end connection 127.0.0.1:12718 (13 connections now open)
+2016-12-22T18:42:36.225+0800 I NETWORK  [conn43] end connection 127.0.0.1:11424 (12 connections now open)
+2016-12-22T18:42:36.225+0800 I NETWORK  [conn46] end connection 127.0.0.1:11427 (11 connections now open)
+2016-12-22T18:42:36.225+0800 I NETWORK  [conn47] end connection 127.0.0.1:11428 (10 connections now open)
+2016-12-22T18:42:36.234+0800 I NETWORK  [conn44] end connection 127.0.0.1:11425 (9 connections now open)
+2016-12-22T18:42:36.235+0800 I NETWORK  [conn45] end connection 127.0.0.1:11426 (8 connections now open)
+2016-12-22T18:42:41.521+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:13495 #52 (9 connections now open)
+2016-12-22T18:42:41.525+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:13496 #53 (10 connections now open)
+2016-12-22T18:42:41.526+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:13497 #54 (11 connections now open)
+2016-12-22T18:42:41.527+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:13498 #55 (12 connections now open)
+2016-12-22T18:42:41.529+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:13499 #56 (13 connections now open)
+2016-12-22T18:59:30.920+0800 I NETWORK  [conn52] end connection 127.0.0.1:13495 (12 connections now open)
+2016-12-22T18:59:30.921+0800 I NETWORK  [conn56] end connection 127.0.0.1:13499 (11 connections now open)
+2016-12-22T18:59:30.923+0800 I NETWORK  [conn54] end connection 127.0.0.1:13497 (10 connections now open)
+2016-12-22T18:59:30.927+0800 I NETWORK  [conn55] end connection 127.0.0.1:13498 (9 connections now open)
+2016-12-22T18:59:30.927+0800 I NETWORK  [conn53] end connection 127.0.0.1:13496 (8 connections now open)
+2016-12-22T18:59:37.333+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:20742 #57 (9 connections now open)
+2016-12-22T18:59:37.337+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:20743 #58 (10 connections now open)
+2016-12-22T18:59:37.338+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:20744 #59 (11 connections now open)
+2016-12-22T18:59:37.340+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:20745 #60 (12 connections now open)
+2016-12-22T18:59:37.341+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:20746 #61 (13 connections now open)
+2016-12-22T20:07:43.168+0800 I NETWORK  [conn58] end connection 127.0.0.1:20743 (12 connections now open)
+2016-12-22T20:07:43.168+0800 I NETWORK  [conn59] end connection 127.0.0.1:20744 (11 connections now open)
+2016-12-22T20:07:43.169+0800 I NETWORK  [conn57] end connection 127.0.0.1:20742 (10 connections now open)
+2016-12-22T20:07:43.169+0800 I NETWORK  [conn61] end connection 127.0.0.1:20746 (9 connections now open)
+2016-12-22T20:07:43.172+0800 I NETWORK  [conn60] end connection 127.0.0.1:20745 (8 connections now open)
+2016-12-22T20:07:49.527+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63088 #62 (9 connections now open)
+2016-12-22T20:07:49.530+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63089 #63 (10 connections now open)
+2016-12-22T20:07:49.532+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63090 #64 (11 connections now open)
+2016-12-22T20:07:49.534+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63091 #65 (12 connections now open)
+2016-12-22T20:07:49.535+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63092 #66 (13 connections now open)
+2016-12-22T20:08:38.624+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63586 #67 (14 connections now open)
+2016-12-22T20:08:38.687+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:63589 #68 (15 connections now open)
+2016-12-22T20:10:10.937+0800 I NETWORK  [conn63] end connection 127.0.0.1:63089 (14 connections now open)
+2016-12-22T20:10:10.937+0800 I NETWORK  [conn62] end connection 127.0.0.1:63088 (13 connections now open)
+2016-12-22T20:10:10.937+0800 I NETWORK  [conn66] end connection 127.0.0.1:63092 (12 connections now open)
+2016-12-22T20:10:10.938+0800 I NETWORK  [conn65] end connection 127.0.0.1:63091 (11 connections now open)
+2016-12-22T20:10:10.941+0800 I NETWORK  [conn64] end connection 127.0.0.1:63090 (10 connections now open)
+2016-12-22T20:10:17.043+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64554 #69 (11 connections now open)
+2016-12-22T20:10:17.047+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64555 #70 (12 connections now open)
+2016-12-22T20:10:17.049+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64556 #71 (13 connections now open)
+2016-12-22T20:10:17.051+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64557 #72 (14 connections now open)
+2016-12-22T20:10:17.052+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:64558 #73 (15 connections now open)
+2016-12-22T20:10:45.517+0800 I COMMAND  [conn2] CMD: drop UIShop.orders
+2016-12-22T20:10:48.007+0800 I COMMAND  [conn2] CMD: drop UIShop.works
+2016-12-22T20:11:31.136+0800 I NETWORK  [conn1] end connection 127.0.0.1:2106 (14 connections now open)
+2016-12-22T20:11:32.247+0800 I CONTROL  [thread1] CTRL_CLOSE_EVENT signal
+2016-12-22T20:11:32.248+0800 I CONTROL  [consoleTerminate] got CTRL_CLOSE_EVENT, will terminate after current cmd ends
+2016-12-22T20:11:32.248+0800 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2016-12-22T20:11:32.264+0800 I CONTROL  [consoleTerminate] now exiting
+2016-12-22T20:11:32.264+0800 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2016-12-22T20:11:32.264+0800 I NETWORK  [consoleTerminate] closing listening socket: 384
+2016-12-22T20:11:32.264+0800 I NETWORK  [consoleTerminate] shutdown: going to flush diaglog...
+2016-12-22T20:11:32.264+0800 I NETWORK  [consoleTerminate] shutdown: going to close sockets...
+2016-12-22T20:11:32.269+0800 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2016-12-22T20:11:32.270+0800 I NETWORK  [conn13] end connection 127.0.0.1:4120 (13 connections now open)
+2016-12-22T20:11:32.270+0800 I NETWORK  [conn12] end connection 127.0.0.1:4119 (13 connections now open)
+2016-12-22T20:11:32.276+0800 I NETWORK  [conn14] end connection 127.0.0.1:4121 (13 connections now open)
+2016-12-22T20:11:32.276+0800 I NETWORK  [conn15] end connection 127.0.0.1:4122 (13 connections now open)
+2016-12-22T20:11:32.276+0800 I NETWORK  [conn3] end connection 127.0.0.1:2230 (13 connections now open)
+2016-12-22T20:11:32.276+0800 I NETWORK  [conn2] end connection 127.0.0.1:2225 (13 connections now open)
+2016-12-22T20:11:32.276+0800 I NETWORK  [conn11] end connection 127.0.0.1:4118 (13 connections now open)
+2016-12-22T20:11:32.277+0800 I NETWORK  [conn71] end connection 127.0.0.1:64556 (13 connections now open)
+2016-12-22T20:11:32.277+0800 I NETWORK  [conn72] end connection 127.0.0.1:64557 (13 connections now open)
+2016-12-22T20:11:32.278+0800 I NETWORK  [conn67] end connection 127.0.0.1:63586 (13 connections now open)
+2016-12-22T20:11:32.278+0800 I NETWORK  [conn68] end connection 127.0.0.1:63589 (13 connections now open)
+2016-12-22T20:11:32.278+0800 I NETWORK  [conn69] end connection 127.0.0.1:64554 (13 connections now open)
+2016-12-22T20:11:32.278+0800 I NETWORK  [conn70] end connection 127.0.0.1:64555 (13 connections now open)
+2016-12-22T20:11:32.278+0800 I NETWORK  [conn73] end connection 127.0.0.1:64558 (13 connections now open)
+2016-12-22T20:11:32.365+0800 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2016-12-22T20:11:32.366+0800 I CONTROL  [consoleTerminate] dbexit:  rc: 12

@@ -112,6 +112,26 @@ Work.find({designerId: 2}, function(err, works){
         }
     }
 });
+
+function mycallback(){
+    console.log("haha");
+}
+var count = 1;
+for(var i = 0; i < 10; i++) {
+    console.log("没有查到1");
+    User.findOne({username: '12312'}, function (err, res) {
+        if (err) {
+            console.log(err);
+        } else {
+            if (res == null) {
+                console.log("没有查到2");
+                console.log(count++);
+                mycallback();
+            }
+            //console.log(res);
+        }
+    })
+}
 //insert();
 //update();
 //findByIdAndUpdate();
