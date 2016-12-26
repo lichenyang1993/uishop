@@ -8,11 +8,12 @@
 describe('Designer Backend Header Module Testcase',function() {
     beforeEach(module('ui-designer-backend'));
 
-    var headerCtrl, mockBackend, user;
+    var headerCtrl, mockBackend, user,scope;
 
-    beforeEach(inject(function($controller,$httpBackend) {
+    beforeEach(inject(function($rootScope,$controller,$httpBackend) {
+        scope = $rootScope.$new();
         mockBackend = $httpBackend;
-        headerCtrl = $controller('DesignerHeaderController');
+        headerCtrl = $controller('DesignerHeaderController', {$scope: scope});
 
     }));
 

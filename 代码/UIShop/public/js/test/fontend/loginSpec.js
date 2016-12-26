@@ -6,13 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 describe('Login Module Testcase',function() {
-    beforeEach(module('uishop-login'));
+    beforeEach(module('uishop'));
 
-    var loginCtrl, mockBackend, user;
+    var loginCtrl, mockBackend, user,scope;
 
-    beforeEach(inject(function($controller,$httpBackend) {
+    beforeEach(inject(function($rootScope,$controller,$httpBackend) {
         mockBackend = $httpBackend;
-        loginCtrl = $controller('LoginController');
+        scope = $rootScope.$new();
+        loginCtrl = $controller('LoginController',{$scope: scope});
         user = {username:'user',password:'123456',userType:'designer'};
     }));
 

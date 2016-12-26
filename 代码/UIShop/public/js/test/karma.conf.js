@@ -12,7 +12,7 @@ module.exports = function(config){
             'angular-mocks.js',
             '../angular-route.js',
             '../ng-infinite-scroll.min.js',
-            '../login.js',
+            '../angular-local-storage.min.js',
             '../font-end.js',
             '../designer-backend.js',
             '../ngRemoteValidate.0.6.1.min.js',

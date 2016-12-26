@@ -8,11 +8,12 @@
 describe('Font End Header Module Testcase',function() {
     beforeEach(module('uishop'));
 
-    var headerCtrl, mockBackend, user;
+    var headerCtrl, mockBackend, user,scope;
 
-    beforeEach(inject(function($controller,$httpBackend) {
+    beforeEach(inject(function($rootScope,$controller,$httpBackend) {
+        scope = $rootScope.$new();
         mockBackend = $httpBackend;
-        headerCtrl = $controller('HeaderController');
+        headerCtrl = $controller('HeaderController', {$scope: scope});
 
     }));
 

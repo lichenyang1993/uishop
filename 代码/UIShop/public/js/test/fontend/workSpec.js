@@ -8,12 +8,13 @@
 describe('Font End Header Module Testcase',function() {
     beforeEach(module('uishop'));
 
-    var workSearchCtrl, mockBackend, works, loc;
+    var workSearchCtrl, mockBackend, works, loc,scope;
 
-    beforeEach(inject(function($controller,$httpBackend,$location) {
+    beforeEach(inject(function($rootScope,$controller,$httpBackend,$location) {
         loc = $location;
+        scope = $rootScope.$new();
         mockBackend = $httpBackend;
-        workSearchCtrl = $controller('SearchWorkController');
+        workSearchCtrl = $controller('SearchWorkController',{$scope: scope});
         workSearchCtrl.keyword="蓝色";
         works = [
             {
@@ -50,7 +51,7 @@ describe('Font End Header Module Testcase',function() {
         mockBackend.flush();
 
         console.log(loc.path())
-        expect(loc.path()).toEqual('/searchWorks');
+        expect(loc.path()).toEqual('/searchWork');
 
     });
 
