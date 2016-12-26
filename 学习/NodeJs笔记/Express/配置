@@ -1,0 +1,4 @@
+c:\Users\Administrator\microblog>SET DEBUG=microblog:* & npm start
+
+> microblog@0.0.0 start c:\Users\Administrator\microblog
+> node ./bin/www

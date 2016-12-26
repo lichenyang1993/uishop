@@ -1,0 +1,15 @@
+/*
+创建包
+Node.js的包是一个目录
+
+package.json必须在包的顶层目录下，
+二进制文件在bin目录下，
+JavaScript文件在lib目录下,
+文档在doc目录下，
+单元测试在test目录下。
+*/
+
+//somepackage/index.js
+exports.hello = function() {
+	console.log('Hello.');
+};
