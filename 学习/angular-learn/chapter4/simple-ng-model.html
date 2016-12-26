@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Notes App</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body ng-controller="MainCtrl as ctrl">
+    <input type="text" ng-model="ctrl.username"/>
+    You typed {{ ctrl.username}}
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('notesApp',[])
+        .controller('MainCtrl',[function() {
+        this.username="nothing";
+    }])
+</script>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Hello AngularJS</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body ng-controller="MainCtrl">
+    Hello {{1+1}}nd time AngularJS
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('notesApp',[])
+            .controller('MainCtrl',[function(){
+                console.log("MainCtrl has been created");
+            }]);
+</script>
+</html>

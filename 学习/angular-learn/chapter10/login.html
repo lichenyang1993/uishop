@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="ui-pay">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录页面</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="angular.js"></script>
+    <script src="angular-local-storage.min.js"></script>
+    <script src="outer.js"></script>
+    <script src="project.js"></script>
+    <style>
+        .ci-count {
+            position: absolute;
+            top: 5px;
+            left: 140px;
+            right: auto;
+            display: inline-block;
+            padding: 1px;
+            font-size: 12px;
+            line-height: 12px;
+            color: #fff;
+            background-color: #f10215;
+            border-radius: 7px;
+            min-width: 12px;
+            text-align: center;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body ng-controller="LoginController as ctrl">
+    <h1>登录页面</h1>
+    登录成功后跳转页面：{{ctrl.backUrl}}<br><br>
+    {{ctrl.prompt}}<br><br>
+    <div ng-show="ctrl.list.length > 0">列表长度大于0</div>
+    <div ng-show="ctrl.list==undefined || ctrl.list.length==0">列表没有内容</div>
+    <div>
+        总价：{{ctrl.totalPrice()}} <br><button ng-click="ctrl.addPrice()">添加</button>
+    </div>
+    <span><i class="ci-count">100</i><span>
+</body>
+</html>

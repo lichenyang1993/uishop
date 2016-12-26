@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Filters in Action</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body ng-app="filtersApp">
+    <div ng-controller="FilterCtrl as ctrl">
+        <div>
+            Amount as a number:{{ctrl.amount | number}}
+        </div>
+        <div>
+            Total Cost as a currency: {{ctrl.totalCost | currency}}
+        </div>
+        <div>
+            Total Cost in INR: {{ctrl.totalCost | currency:'INR '}}
+        </div>
+        <div>
+            Shouting the name: {{ctrl.name | uppercase}}
+        </div>
+        <div>
+            Whispering the name: {{ctrl.name | lowercase}}
+        </div>
+        <div>
+            Start Time: {{ctrl.startTime | date:'medium'}}
+        </div>
+    </div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('filtersApp',[])
+        .controller('FilterCtrl',[function(){
+        this.amount = 1024;
+        this.totalCost = 4096;
+        this.name = 'Shyam Seshadri';
+        this.startTime = new Date().getTime();
+    }])
+</script>
+</html>

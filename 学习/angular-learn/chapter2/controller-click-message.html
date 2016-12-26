@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Notes App</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body ng-controller="MainCtrl as ctrl">
+{{ctrl.message}} AngularJS.
+<button ng-click="ctrl.changeMessage()">
+    Change Message
+</button>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('notesApp',[])
+            .controller('MainCtrl',[function(){
+        var self = this;
+        self.message = "Hello ";
+        self.changeMessage = function() {
+            self.message = "Goodbye ";
+        }
+    }]);
+</script>
+</html>

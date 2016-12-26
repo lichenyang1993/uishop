@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Notes App</title>
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+    <h1>Hello Service</h1>
+    <button ng-click="mainCtrl.logStuff()">Log something</button>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('notesApp',[])
+        .controller('MainCtrl',['$log',function($log){
+        var self = this;
+        self.logStuff = function(){
+            $log.log('The button was pressed');
+        }
+    }])
+</script>
+</html>

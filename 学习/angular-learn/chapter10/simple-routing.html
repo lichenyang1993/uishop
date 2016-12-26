@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>AngularJS Routing</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
+</head>
+<body ng-app="routingApp" ng-controller="TestController as ctrl">
+    <h2>AngularJS Routing Application</h2>
+    <ul>
+        <li><a href="#/">Default Route</a></li>
+        <li><a href="#/second">Second Route</a></li>
+        <li><a href="#/asdasdasd">Nonexistent Route</a></li>
+    </ul>
+    <input type="text" ng-model="ctrl.text">
+    {{ctrl.text}}
+    <input type="button" ng-click="ctrl.change()">
+    <div ng-controller="TestController2 as testCtrl">
+        Test2<br>
+        {{testCtrl.text}}
+    </div>
+    <div ng-view></div>
+    <script>
+        angular.module('routingApp',['ngRoute'])
+            .config(['$routeProvider',function($routeProvider){
+            $routeProvider.when('/',{
+                template: '<h5>This is the default route</h5>'
+            })
+            .when('/second',{
+                template: '<h5>This is the second route</h5>'
+            })
+            .otherwise({redirectTo:'/'});
+        }]).controller('TestController',['TestService',function(TestService){
+            var self = this;
+            self.text = TestService.text();
+            self.change = function(){
+                TestService.setText(self.text);
+            }
+        }]).controller('TestController2',['TestService','$scope',function(TestService,$scope){
+            var self = this;
+            $scope.$watch( function () { return TestService.text(); }, function ( text ) {
+                // handle it here. e.g.:
+                self.text = text;
+            });
+        }]).factory('TestService',[function(){
+            var self = this;
+            self.txtValue = "TextService";
+            return {
+                text:function(){
+                    return self.txtValue;
+                },
+                setText: function(txt){
+                    self.txtValue = txt;
+                }
+            }
+        }]);
+    </script>
+</body>
+</html>
