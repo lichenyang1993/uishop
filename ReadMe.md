@@ -10,3 +10,8 @@
 - WebSocket
 - Html5
 - CSS3
+
+### Team Members:
+- Chen Xi		陈曦	16126135
+- Li Chenyang	李晨阳	16126163
+- Wang Dongjin	王东晋	16126205
