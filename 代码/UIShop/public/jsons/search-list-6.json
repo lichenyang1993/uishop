@@ -1,0 +1,60 @@
+{
+    "keyword": "购物",
+    "resultCount": 12,
+    "products": [
+        {
+            "productName": "购物门户网站设计",
+            "productUrl": "#/",
+            "productImg": "images/products/1.jpg",
+            "productPrice" : 1500.00,
+            "designerImg" : "images/avatars/1.jpg",
+            "designerName" : "魏小毛",
+            "designerPage" : "#/"
+        },
+        {
+            "productName": "乐购-大学生购物app",
+            "productUrl": "#/",
+            "productImg": "images/products/2.jpg",
+            "productPrice" : 2000.00,
+            "designerImg" : "images/avatars/12.jpg",
+            "designerName" : "summersnow",
+            "designerPage" : "#/"
+        },
+        {
+            "productName": "消费分期购物平台－p2p模式",
+            "productUrl": "#/",
+            "productImg": "images/products/3.png",
+            "productPrice" : 2000.00,
+            "designerImg" : "images/avatars/13.jpg",
+            "designerName" : "LIXO",
+            "designerPage" : "#/"
+        },
+        {
+            "productName": "花开-购物APP",
+            "productUrl": "#/",
+            "productImg": "images/products/4.png",
+            "productPrice" : 1800.00,
+            "designerImg" : "images/avatars/14.jpg",
+            "designerName" : "ace_vision",
+            "designerPage" : "#/"
+        },
+        {
+            "productName": "买买买，简洁的购物APP",
+            "productUrl": "#/",
+            "productImg": "images/products/5.jpg",
+            "productPrice" : 1600.00,
+            "designerImg" : "images/avatars/15.jpg",
+            "designerName" : "xiliab",
+            "designerPage" : "#/"
+        },
+        {
+            "productName": "买买买，简洁的购物APP",
+            "productUrl": "#/",
+            "productImg": "images/products/6.png",
+            "productPrice" : 3000.00,
+            "designerImg" : "images/avatars/16.png",
+            "designerName" : "wendly",
+            "designerPage" : "#/"
+        }
+    ]
+}

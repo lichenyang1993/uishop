@@ -7,12 +7,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes');
-var users = require('./routes/user');
-var getMethodTest = require('./routes/getMethodTest');
-var postMethodTest = require('./routes/postMethodTest');
-var fileUploadTest = require('./routes/fileuploadTest');
-var demo = require('./routes/demo');
+
 
 /*
 ------------------- 正式项目使用的模块 --------------------------------
